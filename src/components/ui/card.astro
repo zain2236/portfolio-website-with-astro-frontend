@@ -1,0 +1,18 @@
+---
+import { CodeIcon , SchoolIcon , ProjectorIcon } from "@lucide/astro";
+
+const { icon, title, description } = Astro.props;
+
+const iconMap = {
+  code: CodeIcon,   
+  education: SchoolIcon,
+  project: ProjectorIcon,
+};
+
+const Icon = iconMap[icon as keyof typeof iconMap] ;
+---
+<div class="p-4 border border-gray-300 rounded-md shadow-sm ">
+   { Icon && <Icon class="w-7 h-7 text-gray-600 my-5.5 " />}
+    <p class="text-md font-semibold text-gray-700 tracking-wider font-outfit mb-3">{title}</p>
+    <p class="text-sm text-gray-600 tracking-wide font-ovo">{description}</p>
+</div>
