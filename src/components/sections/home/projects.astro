@@ -1,0 +1,60 @@
+---
+import todoImage from "../../../assets/todo-image.png";
+import hotelImage from "../../../assets/hotel-img.jpg";
+import youtubeImage from "../../../assets/youtube-img.png";
+import aiImage from "../../../assets/ai-image.png";
+import ProjectCard from "../../ui/project-card.astro";
+
+const projectsData = [
+  {
+    image: todoImage,
+    title: "TODO App",
+    description: "A simple todo list app built with React and Tailwind CSS.",
+    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+  },
+  {
+    image: hotelImage,
+    title: "Hotel Management System",
+    description: "A hotel management system built with React and Tailwind CSS.",
+    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+  },
+  {
+    image: youtubeImage,
+    title: "Youtube Clone",
+    description: "A youtube clone built with React and Tailwind CSS.",
+    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+  },
+  {
+    image: aiImage,
+    title: "AI Image Generator",
+    description: "A AI image generator built with React and Tailwind CSS.",
+    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+  },
+];
+---
+
+<section class="min-h-svh my-12">
+  <div class="text-center">
+    <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
+      My Protfolio
+    </p>
+    <h2 class="text-4xl font-semibold font-ovo tracking-wide">My Projects</h2>
+    <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
+      I have worked on a variety of projects, from small to large, from simple
+      to complex.
+    </p>
+  </div>
+  <div class="grid grid-cols-4 gap-x-8 my-12">
+    {
+      projectsData &&
+        projectsData.map((project) => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            link={project.link}
+          />
+        ))
+    }
+  </div>
+</section>

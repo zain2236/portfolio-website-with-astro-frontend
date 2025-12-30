@@ -1,0 +1,80 @@
+---
+import Button from "../ui/button.astro";
+---
+
+<div id="scroll-trigger" class="h-[1px]"></div>
+<header
+  id="site-header"
+  class="sticky top-0 z-100 bg-white/90 backdrop-blur-sm shadow-sm"
+>
+  <nav
+    class="container mx-auto flex justify-between items-center py-3 px-4 md:px-6 lg:px-8"
+  >
+    <div>
+      <h1 class="text-2xl font-bold font-outfit tracking-wide text-gray-900">
+        JAIN<span class="text-4xl font-bold font-outfit">.</span>
+      </h1>
+    </div>
+    <ul id="nav-list" class="flex gap-x-9 py-2.5 px-5.5 rounded-full shadow-sm">
+      <li>
+        <a
+          href="/"
+          class="inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200"
+          >Home</a>
+      </li>
+      <li>
+        <a
+          href="/about"
+          class="inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200"
+          >About</a>
+      </li>
+      <li>
+        <a
+          href="/blog"
+          class="inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200"
+          >Blog</a>
+      </li>
+      <li>
+        <a
+          href="/portfolio"
+          class="inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200"
+          >Portfolio</a>
+      </li>
+    </ul>
+    <Button title="Contact" bgColor="transparent" textColor="text-gray-900" />
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("site-header") as HTMLElement;
+  const navList = document.getElementById("nav-list") as HTMLElement;
+  const trigger = document.getElementById("scroll-trigger") as HTMLElement;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        // SCROLLED STATE
+        header?.classList.add("bg-white/90", "backdrop-blur-sm", "shadow-sm");
+
+        navList?.classList.remove("bg-white", "shadow-sm");
+        navList?.classList.add("bg-transparent");
+      } else {
+        // TOP STATE
+        header?.classList.remove(
+          "bg-white/90",
+          "backdrop-blur-sm",
+          "shadow-sm"
+        );
+
+        navList?.classList.add("bg-white", "shadow-sm");
+        navList?.classList.remove("bg-transparent");
+      }
+    },
+    {
+      root: null,
+      threshold: 0,
+    }
+  );
+
+  observer.observe(trigger as Element);
+</script>

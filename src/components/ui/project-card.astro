@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+
+const {title, description, image, link} = Astro.props;
+---
+
+<div class="w-full h-full rounded-md shadow-sm overflow-hidden border border-gray-300 ">
+    <div class="h-48 p-2 bg-white">
+        <Image src={image} alt="Todo List" class="w-full h-full  object-position-center rounded-md"></Image>
+    </div>
+    <div class="p-4">
+        <h3 class="text-lg font-semibold font-ovo tracking-wide">{title}</h3>
+        <p class="text-sm text-gray-600 font-medium tracking-wide font-ovo my-2">{description}</p>
+        <a href={link} class="inline-block w-full text-center text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px]  transition-all duration-200 bg-black text-white px-4 py-2 my-2 rounded-md" target="_blank">View Project</a>
+    </div>
+</div>      
