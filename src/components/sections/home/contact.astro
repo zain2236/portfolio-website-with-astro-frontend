@@ -1,0 +1,94 @@
+---
+import { Phone, Mail, MapPin } from "@lucide/astro";
+import Button from "../../ui/button.astro";
+
+const contactData = [
+  {
+    section: "Get in touch",
+    sectionTitle: "Contact Me",
+    sectionDescription: "I'm available on these platforms",
+  },
+  {
+    icon: Phone,
+    title: "Call me",
+    description: "+92-123456789",
+  },
+  {
+    icon: Mail,
+    title: "Email me",
+    description: "example@gmail.com",
+  },
+  {
+    icon: MapPin,
+    title: "Location",
+    description: "Pakistan",
+  },
+];
+---
+
+<section class="min-h-svh my-12">
+  <div class="text-center">
+    <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
+      Get in touch
+    </p>
+    <h2 class="text-4xl font-semibold font-ovo tracking-wide">Contact Me</h2>
+    <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
+      I'm available on these platforms
+    </p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-2 my-12">
+    <div>
+      {
+        contactData &&
+          contactData.slice(1).map((contact) => (
+            <div class="flex items-center gap-x-2 p-2 my-3">
+              <span class="bg-black/80 rounded-full ">
+                <contact.icon class="w-9 h-9 p-1.5 text-white" />
+              </span>
+              <div class="flex flex-col">
+                <h3 class="text-lg font-semibold font-ovo tracking-wide">
+                  {contact.title}{" "}
+                </h3>
+                <p class="text-sm text-gray-600 font-medium tracking-wide font-ovo">
+                  {contact.description}
+                </p>
+              </div>
+            </div>
+          ))
+      }
+    </div>
+    
+    <div class="col-span-2">
+      <form action="#">
+        <div class="grid grid-cols-2 gap-x-6">
+          <input
+            type="text"
+            placeholder="Name"
+            class="w-full text-md text-gray-700 px-3 py-1.5 bg-gray-100 focus:bg-white focus:outline-none border border-black/60 rounded-sm"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            class="w-full text-md text-gray-700 px-3 py-1.5 bg-gray-100 focus:bg-white focus:outline-none border border-black/60 rounded-sm"
+          />
+        </div>
+        <div class="my-8">
+          <textarea
+            name="text"
+            id="text"
+            rows="5"
+            placeholder="Leave a massege"
+            class="text-md text-gray-700 w-full px-3 py-1.5 text-sm bg-gray-100 focus:bg-white focus:outline-none border border-black/60 rounded-sm"
+          ></textarea>
+        </div>
+        <div class="w-fit">
+          <Button
+            title="Send Message"
+            bgColor="bg-black"
+            textColor="text-white"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
