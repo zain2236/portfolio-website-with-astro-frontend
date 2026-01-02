@@ -34,7 +34,7 @@ const projectsData = [
 ];
 ---
 
-<section class="container mx-auto py-12 ">
+<section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
   <div class="text-center">
     <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
       My Protfolio
@@ -54,11 +54,12 @@ const projectsData = [
             description={project.description}
             image={project.image}
             link={project.link}
+            href="/projects"
           />
         ))
     }
   </div>
-  <div class= "grid place-items-center my-12">
-    <Button title="View All Projects" bgColor="bg-black" textColor="text-white" href="/projects" />
+  <div class= "grid place-items-center py-8">
+    <Button title="See More Projects" bgColor="bg-black" textColor="text-white" href="/projects" />
   </div>
 </section>

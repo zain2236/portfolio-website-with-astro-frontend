@@ -1,0 +1,127 @@
+---
+import BlogCard from "../../ui/blog-card.astro";
+import Button from "../../ui/button.astro";
+
+const blogs = [
+  {
+    title: "How to Learn Programming the Right Way",
+    slug: "how-to-learn-programming",
+    content:
+      "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "15 Nov 2022",
+  },
+  {
+    title: "How to Improve Productivity Without Burning Out",
+    slug: "how-to-improve-productivity",
+    content:
+      "Productivity is not doing more work. It is doing meaningful work consistently. Eliminating distractions and setting clear priorities beats any productivity hack.",
+    image:
+      "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "10 Dec 2022",
+  },
+  {
+    title: "Why Most Developers Fail to Stay Consistent",
+    slug: "developer-consistency-problem",
+    content:
+      "Most developers don’t fail because of lack of talent. They fail because they jump between tutorials, frameworks, and trends without committing to finishing anything.",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "05 Jan 2023",
+  },
+  {
+    title: "Building Side Projects That Actually Matter",
+    slug: "building-meaningful-side-projects",
+    content:
+      "Side projects are proof of skill, not portfolio decorations. Real projects solve problems, attract users, and force you to think beyond code.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "22 Feb 2023",
+  },
+  {
+    title: "Learning Frontend Without Framework Addiction",
+    slug: "learning-frontend-without-framework-addiction",
+    content:
+      "Frameworks change constantly. Fundamentals don’t. Developers who master HTML, CSS, and JavaScript adapt faster and write better code long-term.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "18 Mar 2023",
+  },
+  {
+    title: "Discipline Beats Motivation Every Single Time",
+    slug: "discipline-beats-motivation",
+    content:
+      "Motivation is emotional and unreliable. Discipline is boring, predictable, and effective. Professionals don’t wait to feel inspired before doing the work.",
+    image:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "02 Apr 2023",
+  },
+  {
+    title: "Why Tutorials Alone Will Never Make You Job-Ready",
+    slug: "tutorials-wont-make-you-job-ready",
+    content:
+      "Tutorials are passive learning. Real growth comes from building things, making mistakes, debugging, and shipping incomplete but working projects.",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "20 Apr 2023",
+  },
+  {
+    title: "How to Think Like a Developer Instead of a Student",
+    slug: "think-like-a-developer",
+    content:
+      "Students wait for instructions. Developers identify problems, research solutions, and take ownership. The mindset shift matters more than technical skill.",
+    image:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "08 May 2023",
+  },
+  {
+    title: "Shipping Small Features Beats Planning Big Ideas",
+    slug: "shipping-small-features",
+    content:
+      "Overplanning kills momentum. Shipping small, imperfect features creates feedback loops and real progress. Momentum beats perfection.",
+    image:
+      "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "26 May 2023",
+  },
+  {
+    title: "Why Clean Code Is About Communication, Not Style",
+    slug: "clean-code-is-communication",
+    content:
+      "Clean code is readable code. It is written for humans first, machines second. Naming, structure, and clarity matter more than clever tricks.",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1160",
+    createdAt: "12 Jun 2023",
+  },
+];
+
+---
+
+<section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+    <div class="text-center">
+        <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
+          My Blog
+        </p>
+        <h2 class="text-4xl font-semibold font-ovo tracking-wide">My Blog</h2>
+        <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
+          I have written a variety of blogs, on a variety of topics.
+        </p>
+      </div>
+  <div class="grid grid-cols-3 gap-8 py-12">
+    {
+      blogs &&
+        blogs.slice(0, 3).map((blog) => (
+          <BlogCard
+            title={blog.title}
+            content={blog.content}
+            image={blog.image}
+            createdAt={blog.createdAt}
+            slug={blog.slug}
+          />
+        ))
+    }
+  </div>
+  <div class= "grid place-items-center py-8">
+    <Button title="View All Blogs" bgColor="bg-black" textColor="text-white" href="/blogs" />
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { ArrowRightIcon } from "@lucide/astro";
+const { title, content, image, createdAt, slug } = Astro.props;
+---
+
+<article
+  class="overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:shadow-md"
+>
+  <!-- Image -->
+  <a href={`/blogs/${slug}`} class="block">
+    <img src={image} alt={title} class="h-56 w-full object-cover" />
+  </a>
+
+  <!-- Content -->
+  <div class="p-4">
+    <p class="text-sm text-gray-500 font-medium font-ovo">
+      {createdAt}
+    </p>
+
+    <a href={`/blogs/${slug}`} class="block mt-2">
+      <h3 class="text-lg font-medium text-gray-900 leading-snug">
+        {title}
+      </h3>
+    </a>
+
+    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-600 font-medium font-ovo">
+      {content}
+    </p>
+
+    <a
+      href={`/blogs/${slug}`}
+      class="group mt-4 inline-flex items-center gap-1 text-md font-medium font-ovo text-gray-900"
+    >
+      Read article
+      <ArrowRightIcon
+        class="w-4 h-4 transition-transform group-hover:translate-x-1 text-gray-900"
+      />
+    </a>
+  </div>
+</article>
