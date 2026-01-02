@@ -1,10 +1,10 @@
 ---
-import { ArrowRight , ArrowDown , Download } from '@lucide/astro';
-const { title, bgColor, textColor , downloadIcon } = Astro.props;
+import { ArrowRight , Download } from '@lucide/astro';
+const { title, bgColor, textColor , downloadIcon , href} = Astro.props;
 ---
 
-<div class={`flex items-center justify-between py-2 px-5.5 gap-x-1.5 border hover:translate-y-[-2px] hover:shadow-md transition-all duration-150 border-gray-400 rounded-full ${bgColor} ${textColor}`}>
-    <button class={`text-sm font-medium font-ovo tracking-wide cursor-pointer ${textColor}`}>{title} </button>
+<div class={`w-fit flex items-center justify-between py-2 px-5.5 gap-x-1.5 border hover:translate-y-[-2px] hover:shadow-md transition-all duration-150 border-gray-400 rounded-full ${bgColor} ${textColor}`}>
+    <a href={href} class={`text-sm font-medium font-ovo tracking-wide cursor-pointer ${textColor}`}>{title} </a>
     {downloadIcon ? ( <Download class={`w-4 h-4 ${textColor} cursor-pointer`} />) :( <ArrowRight class={`w-4 h-4 ${textColor} cursor-pointer`} />) }
    
 </div>

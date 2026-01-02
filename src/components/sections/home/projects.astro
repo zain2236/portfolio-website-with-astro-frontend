@@ -4,6 +4,7 @@ import hotelImage from "../../../assets/hotel-img.jpg";
 import youtubeImage from "../../../assets/youtube-img.png";
 import aiImage from "../../../assets/ai-image.png";
 import ProjectCard from "../../ui/project-card.astro";
+import Button from "../../ui/button.astro";
 
 const projectsData = [
   {
@@ -16,24 +17,24 @@ const projectsData = [
     image: hotelImage,
     title: "Hotel Management System",
     description: "A hotel management system built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+    link: "https://github.com/zain2236/hotel-app",
   },
   {
     image: youtubeImage,
     title: "Youtube Clone",
     description: "A youtube clone built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+    link: "https://github.com/zain2236/react-youtube-clone-with-JWT-auth",
   },
   {
     image: aiImage,
     title: "AI Image Generator",
     description: "A AI image generator built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
+    link: "https://github.com/zain2236/ai-image-generation-model-with-python-and-open-AI",
   },
 ];
 ---
 
-<section class="min-h-svh my-12">
+<section class="container mx-auto py-12 ">
   <div class="text-center">
     <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
       My Protfolio
@@ -44,7 +45,7 @@ const projectsData = [
       to complex.
     </p>
   </div>
-  <div class="grid grid-cols-4 gap-x-8 my-12">
+  <div class="grid grid-cols-4 gap-x-8 py-12">
     {
       projectsData &&
         projectsData.map((project) => (
@@ -56,5 +57,8 @@ const projectsData = [
           />
         ))
     }
+  </div>
+  <div class= "grid place-items-center my-12">
+    <Button title="View All Projects" bgColor="bg-black" textColor="text-white" href="/projects" />
   </div>
 </section>
