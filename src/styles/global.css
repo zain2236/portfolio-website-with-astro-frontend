@@ -6,3 +6,18 @@
     --font-outfit: 'Outfit', sans-serif;
     --font-ovo: 'Ovo' , serif;
 }
+
+::selection{
+    background: #202020;
+    color: #fff;
+}
+
+::-webkit-selection{
+    background: #000;
+    color: #fff;
+}
+
+::-moz-selection{
+    background: #000;
+    color: #fff;
+}

@@ -4,7 +4,7 @@
    import Button from "../../ui/button.astro";
 ---
 
-<section class="min-h-svh my-12 ">
+<section class="container mx-auto py-12 ">
     <div class="text-center  p-2">
         <div class="w-28 rounded-full overflow-hidden mx-auto ">
             <Image src={profileImg} alt="profile" class="w-full h-full object-cover">
@@ -15,8 +15,8 @@
         <p class="text-sm text-gray-800 tracking-wide font-medium font-ovo mt-4">I'm a frontend web developer from pakistan, with 5+ years of experience <br> in companies like Google , Facebook , Apple  etc.</p>
         </div>
         <div class="flex items-center justify-center gap-x-4 cursor-pointer mt-8 ">
-            <Button title="Contact" bgColor="bg-black" textColor="text-white" />
-            <Button title="My Resume" bgColor="transparent" textColor="text-gray-900" downloadIcon="true"/>
+            <Button title="Contact" bgColor="bg-black" textColor="text-white" href="/contact"/>
+            <Button title="My Resume" bgColor="transparent" textColor="text-gray-900" downloadIcon="true" href="/resume"/>
         </div>
     </div>
 </section>
