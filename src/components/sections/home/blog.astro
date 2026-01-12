@@ -97,17 +97,17 @@ const blogs = [
 
 ---
 
-<section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+<section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
     <div class="text-center">
-        <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
+        <p class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo">
           My Blog
         </p>
-        <h2 class="text-4xl font-semibold font-ovo tracking-wide">My Blog</h2>
-        <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
+        <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">My Blog</h2>
+        <p class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo">
           I have written a variety of blogs, on a variety of topics.
         </p>
       </div>
-  <div class="grid grid-cols-3 gap-8 py-12">
+  <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-8 sm:gap-6 md:py-12 py-8">
     {
       blogs &&
         blogs.slice(0, 3).map((blog) => (
@@ -121,7 +121,7 @@ const blogs = [
         ))
     }
   </div>
-  <div class= "grid place-items-center py-8">
+  <div class= "grid place-items-center md:py-8 py-4">
     <Button title="View All Blogs" bgColor="bg-black" textColor="text-white" href="/blogs" />
   </div>
 </section>

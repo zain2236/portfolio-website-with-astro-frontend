@@ -7,16 +7,39 @@ import Services from "../components/sections/home/services.astro";
 import Projects from "../components/sections/home/projects.astro";
 import Contact from "../components/sections/home/contact.astro";
 import Blog from "../components/sections/home/blog.astro";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const URL =
+  "http://localhost:1337/api/home-page?populate[blocks][on][sections.hero][populate][ProfilePicture][fields][0]=url&populate[blocks][on][sections.hero][populate][heroCta][populate]=*&populate[blocks][on][sections.intro][populate][aboutPic][fields][0]=url&populate[blocks][on][sections.intro][populate][aboutCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.services][populate][serviceCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.skills][populate][skillComponent][populate][skillBar][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][link][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][projectPic][fields][0]=url&populate[blocks][on][sections.projects][populate][projectCta][populate]=*";
+async function loadData() {
+  const request = await fetch(URL);
+  const response = await request.json();
+  return response.data || "";
+}
+
+const landingPage = await loadData();
+
+// Hero Section
+const heroSection = landingPage?.blocks[0];
+
+// Intro Section
+const introSection = landingPage?.blocks[1];
+
+// Services Section
+const servicesSection = landingPage?.blocks[2];
+
+// Skills Section
+const skillsSection = landingPage?.blocks[3];
+
+// Projects Section
+const projectsSection = landingPage?.blocks[4];
 ---
 
 <Layout>
-  <Hero />
-  <Intro />
-  <Services />
-  <Skills />
-  <Projects />
+  <Hero data={heroSection} />
+  <Intro data={introSection} />
+  <Services data={servicesSection} />
+  <Skills data={skillsSection} />
+  <Projects data={projectsSection} />
   <Blog />
   <Contact />
 </Layout>

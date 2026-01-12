@@ -26,30 +26,30 @@ const contactData = [
 ];
 ---
 
-<section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+<section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
   <div class="text-center">
-    <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
+    <p class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo">
       Get in touch
     </p>
-    <h2 class="text-4xl font-semibold font-ovo tracking-wide">Contact Me</h2>
-    <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
+    <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">Contact Me</h2>
+    <p class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo">
       I'm available on these platforms
     </p>
   </div>
-  <div class="grid grid-cols-3 gap-x-2 my-12">
+  <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-8 sm:gap-6 md:my-12 my-8">
     <div>
       {
         contactData &&
           contactData.slice(1).map((contact) => (
-            <div class="flex items-center gap-x-2 p-2 my-3">
+            <div class="flex items-center md:gap-2 gap-1.5 md:p-2 p-1.5 md:my-3 my-2">
               <span class="bg-black/80 rounded-full ">
-                <contact.icon class="w-9 h-9 p-1.5 text-white" />
+                <contact.icon class="md:w-9 md:h-9 w-7 h-7 md:p-1.5 p-1 text-white" />
               </span>
               <div class="flex flex-col">
-                <h3 class="text-lg font-semibold font-ovo tracking-wide">
+                <h3 class="md:text-lg text-base font-semibold font-ovo tracking-wide">
                   {contact.title}{" "}
                 </h3>
-                <p class="text-sm text-gray-600 font-medium tracking-wide font-ovo">
+                <p class="hidden md:block md:text-sm text-xs text-gray-600 font-medium tracking-wide font-ovo">
                   {contact.description}
                 </p>
               </div>

@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+async function getAbout() {
+    const response = await fetch("http://localhost:1337/api/header?populate=*");
+    const data = await response.json();
+    return data.data
+
+}
+const about = await getAbout();
+console.log(about);
+const logo = about.logo;
+const navLinks = about.navLinks;
+const cta = about.callToAction;
+---
+
+<Layout>
+  <h1>{logo.title}</h1>
+  {navLinks && navLinks.map((navLink: any) => {
+    return (
+      <a href={navLink.url}>{navLink.title}</a>
+    )
+  })}
+  <h1>{cta.title}</h1>
+  <p>{cta.textColor}</p>
+  <p>{cta.iconName}</p>
+  <p>{cta.ctaTheme}</p>
+
+</Layout>
