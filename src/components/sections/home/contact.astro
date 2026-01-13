@@ -1,61 +1,51 @@
 ---
-import { Phone, Mail, MapPin } from "@lucide/astro";
+import { Phone, Mail, MapPin , Linkedin ,  Instagram , Twitter , Facebook } from "@lucide/astro";
 import Button from "../../ui/button.astro";
 
-const contactData = [
-  {
-    section: "Get in touch",
-    sectionTitle: "Contact Me",
-    sectionDescription: "I'm available on these platforms",
-  },
-  {
-    icon: Phone,
-    title: "Call me",
-    description: "+92-123456789",
-  },
-  {
-    icon: Mail,
-    title: "Email me",
-    description: "example@gmail.com",
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    description: "Pakistan",
-  },
-];
+const { data } = Astro.props;
+
+
+const socialIconMap = {
+  Phone: Phone,
+  Mail: Mail,
+  MapPin: MapPin,
+  Linkedin: Linkedin,
+  Instagram: Instagram,
+  Twitter: Twitter,
+  Facebook: Facebook,
+};
+
+// const ContactIcon = socialIconMap[data?.contactIcon as keyof typeof socialIconMap] 
 ---
 
 <section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
   <div class="text-center">
     <p class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo">
-      Get in touch
+      {data?.subText}
     </p>
-    <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">Contact Me</h2>
+    <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">
+      {data?.title}
+    </h2>
     <p class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo">
-      I'm available on these platforms
+      {data?.description}
     </p>
   </div>
   <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-8 sm:gap-6 md:my-12 my-8">
     <div>
-      {
-        contactData &&
-          contactData.slice(1).map((contact) => (
-            <div class="flex items-center md:gap-2 gap-1.5 md:p-2 p-1.5 md:my-3 my-2">
-              <span class="bg-black/80 rounded-full ">
-                <contact.icon class="md:w-9 md:h-9 w-7 h-7 md:p-1.5 p-1 text-white" />
-              </span>
-              <div class="flex flex-col">
-                <h3 class="md:text-lg text-base font-semibold font-ovo tracking-wide">
-                  {contact.title}{" "}
-                </h3>
-                <p class="hidden md:block md:text-sm text-xs text-gray-600 font-medium tracking-wide font-ovo">
-                  {contact.description}
-                </p>
-              </div>
+      {data?.socialContact?.map((contact: any) => {
+        const ContactIcon = socialIconMap[contact.iconName as keyof typeof socialIconMap];
+      
+        return (
+          <div class="flex items-center md:gap-2 gap-1.5 md:p-2 p-1.5 md:my-3 my-2">
+            {ContactIcon && <ContactIcon class="md:w-9 md:h-9 w-7 h-7 md:p-2 p-1 text-white bg-black/80 rounded-full" />}
+            <div class="flex flex-col">
+              <h3 class="md:text-lg text-base font-semibold font-ovo tracking-wide">{contact.title}</h3>
+              <p class="hidden md:block text-sm text-gray-600 font-medium tracking-wide font-ovo">{contact.subText}</p>
             </div>
-          ))
-      }
+          </div>
+        );
+      })}
+      
     </div>
 
     <div class="col-span-2">
@@ -83,9 +73,11 @@ const contactData = [
         </div>
         <div class="w-fit">
           <Button
-            title="Send Message"
-            bgColor="bg-black"
-            textColor="text-white"
+            title={data?.contactCta?.title}
+            bgColor={data?.contactCta?.ctaTheme}
+            textColor={data?.contactCta?.textColor}
+            iconName={data?.contactCta?.iconName}
+            href={data?.contactCta?.href}
           />
         </div>
       </form>

@@ -1,14 +1,26 @@
 ---
+import { Image } from "astro:assets";
 import { ArrowRightIcon } from "@lucide/astro";
-const { title, content, image, createdAt, slug } = Astro.props;
+
+const { title, content, imageUrl, createdAt , linkHref , linkText , linkIcon } = Astro.props;
+
+
+const iconMap = {
+    ArrowRightIcon: ArrowRightIcon,
+}
+
+const Icon = iconMap[linkIcon as keyof typeof iconMap] ;
+
+const STRAPI_URL = "http://localhost:1337";
+const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "";
 ---
 
 <article
   class="overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:shadow-md"
 >
   <!-- Image -->
-  <a href={`/blogs/${slug}`} class="block">
-    <img src={image} alt={title} class="h-56 w-full object-cover" />
+  <a href={`/blogs`} class="block">
+    <Image src={image} alt={title} class="h-56 w-full object-cover" width={100} height={100} />
   </a>
 
   <!-- Content -->
@@ -17,7 +29,7 @@ const { title, content, image, createdAt, slug } = Astro.props;
       {createdAt}
     </p>
 
-    <a href={`/blogs/${slug}`} class="block mt-2">
+    <a href={`/blogs`} class="block mt-2">
       <h3 class="text-lg font-medium text-gray-900 leading-snug">
         {title}
       </h3>
@@ -27,14 +39,14 @@ const { title, content, image, createdAt, slug } = Astro.props;
       {content}
     </p>
 
-    <a
-      href={`/blogs/${slug}`}
-      class="group mt-4 inline-flex items-center gap-1 text-md font-medium font-ovo text-gray-900"
-    >
-      Read article
-      <ArrowRightIcon
-        class="w-4 h-4 transition-transform group-hover:translate-x-1 text-gray-900"
-      />
-    </a>
+    { linkHref && linkText && linkIcon && (
+      <a
+        href={linkHref}
+        class="group mt-4 inline-flex items-center gap-1 text-md font-medium font-ovo text-gray-900"
+      >
+        {linkText}
+        {Icon && <Icon class="w-4 h-4 transition-transform group-hover:translate-x-1 text-gray-900" />}
+      </a>
+    )}
   </div>
 </article>

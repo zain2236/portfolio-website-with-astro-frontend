@@ -1,8 +1,10 @@
 ---
 import ProjectCard from "../../ui/project-card.astro";
+import Button from "../../ui/button.astro";
 
 const { data } = Astro.props;
 const STRAPI_URL = "http://localhost:1337";
+
 ---
 
 <section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
@@ -48,4 +50,9 @@ const STRAPI_URL = "http://localhost:1337";
   ) : (
     <p>No content found</p>
   )}
+  <div class= "grid place-items-center md:py-8 py-4">
+
+    <Button title={data?.projectCta?.title} bgColor={data?.projectCta?.ctaTheme} textColor={data?.projectCta?.textColor} iconName={data?.projectCta?.iconName} href={data?.projectCta.href} />
+    
+    </div>
 </section>
