@@ -1,66 +1,80 @@
 ---
 import { Image } from "astro:assets";
-const {title, description, image, link, ctaTtile, category, tech, id} = Astro.props;
-
+import { ArrowRight } from "@lucide/astro";
+const { title, description, image, link, ctaTtile, tech } =
+  Astro.props;
 ---
 
-<article class="group w-full h-full flex flex-col rounded-xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-lg hover:border-gray-300 transition-all duration-300 hover:-translate-y-1 cursor-pointer bg-white">
-    <div class="relative aspect-4/3 bg-gray-50 overflow-hidden shrink-0">
-        {image ? (
-            <div class="w-full h-full flex items-center justify-center grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 overflow-hidden">
-                <Image 
-                    src={image} 
-                    alt={title || "Project image"} 
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                    width={600}
-                    height={450}
-                />
-            </div>
-        ) : (
-            <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <p class="text-gray-500 text-sm font-ovo">No Image Available</p>
-            </div>
-        )}
-
-
-        {/* Overlay on hover */}
-        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
-    </div>
-    <div class="flex flex-col grow p-5 md:p-6">
-        <div class="grow min-h-[140px]">
-            <h3 class="text-xl md:text-2xl font-ovo tracking-wide text-gray-900 group-hover:text-black transition-all mb-3">{title}</h3>
-            <p class="text-sm text-gray-600 font-light leading-relaxed mb-4 font-outfit">{description}</p>
-            {/* Tech Stack */}
-            {tech && (
-                <div class="mb-4">
-                    <span class="text-xs font-medium uppercase tracking-widest text-gray-500 font-outfit">
-                        {tech}
-                    </span>
-                </div>
-            )}
+<article
+  class="group w-full h-full flex flex-col rounded-3xl border border-gray-200/60 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+>
+  <!-- Image -->
+  <div class="relative aspect-4/3 bg-gray-50 overflow-hidden shrink-0">
+    {
+      image ? (
+        <div class="w-full h-full flex items-center justify-center grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 overflow-hidden">
+          <Image
+            src={image}
+            alt={title || "Project image"}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            width={600}
+            height={450}
+          />
         </div>
-        {ctaTtile && (
-            <div class="flex justify-between items-center pt-4 border-t border-gray-100 mt-auto">
-                <a 
-                    href={link || "#"} 
-                    class="text-sm font-medium text-gray-900 hover:text-black transition-all flex items-center gap-2 font-outfit group-hover:gap-3"
-                >
-                    {ctaTtile}
-                    <svg 
-                        class="w-4 h-4 transition-transform group-hover:translate-x-1" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path 
-                            d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                            stroke-width="2" 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round"
-                        />
-                    </svg>
-                </a>
-            </div>
-        )}
+      ) : (
+        <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+          <p class="text-gray-500 text-sm font-outfit">No Image Available</p>
+        </div>
+      )
+    }
+
+    <!-- Overlay -->
+    <div
+      class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"
+    >
     </div>
-</article>      
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col grow p-6 md:p-8">
+    <div class="grow min-h-[140px]">
+      <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-3">
+        {title}
+      </h3>
+
+      <p class="text-sm text-gray-600 leading-relaxed mb-5 font-outfit">
+        {description}
+      </p>
+
+      <!-- Tech badge (redesigned) -->
+      {
+        tech && (
+          <div class="mb-6">
+            <span
+              class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase 
+                       bg-gray-50 text-gray-600 border border-gray-200 
+                       group-hover:bg-gray-100 transition-all font-outfit"
+            >
+              {tech}
+            </span>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- CTA -->
+    {
+      ctaTtile && (
+        <div class="pt-4 border-t border-gray-100 mt-auto">
+          <a
+            href={link || "#"}
+            class="text-sm font-semibold text-gray-800 flex items-center gap-2 group-hover:gap-3 transition-all font-outfit"
+          >
+            {ctaTtile}
+            <ArrowRight class="w-4 h-4 text-gray-600 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</article>

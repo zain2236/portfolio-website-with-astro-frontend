@@ -3,7 +3,6 @@
    import Button from "../../ui/button.astro";
 
    const { data } = Astro.props;
-//    console.log(data.ProfilePicture.url);
 
 ---
 
@@ -14,8 +13,8 @@
         </div>
         <p class="md:text-lg text-sm tracking-wider font-medium font-ovo mt-2 ">{data?.subText}</p>
         <div class="md:text-center sm:text-center text-left my-4 max-w-2xl mx-auto">
-            <h1 class="font-ovo font-medium md:text-6xl text-4xl tracking-wide">{data.heading}</h1>
-        <p class="md:text-sm text-xs text-gray-800 tracking-wide font-medium font-ovo md:mt-4 mt-2">{data.description}</p>
+            <h1 class="font-ovo font-medium md:text-6xl text-4xl tracking-wide">{data?.heading}</h1>
+        <p class="md:text-sm text-xs text-gray-800 tracking-wide font-medium font-ovo md:mt-4 mt-2">{data?.description}</p>
         </div>
         <div class="flex items-center justify-start md:justify-center sm:justify-center gap-x-4 cursor-pointer mt-8 ">
             {data?.heroCta && data.heroCta?.map((cta : any)=> {

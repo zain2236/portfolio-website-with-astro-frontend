@@ -1,117 +1,109 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const blogs = [
-  {
-    title: "How to Learn Programming the Right Way",
-    slug: "how-to-learn-programming",
-    content:
-      "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "15 Nov 2022",
-  },
-  {
-    title: "How to Improve Productivity Without Burning Out",
-    slug: "how-to-improve-productivity",
-    content:
-      "Productivity is not doing more work. It is doing meaningful work consistently. Eliminating distractions and setting clear priorities beats any productivity hack.",
-    image:
-      "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "10 Dec 2022",
-  },
-  {
-    title: "Why Most Developers Fail to Stay Consistent",
-    slug: "developer-consistency-problem",
-    content:
-      "Most developers don’t fail because of lack of talent. They fail because they jump between tutorials, frameworks, and trends without committing to finishing anything.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "05 Jan 2023",
-  },
-  {
-    title: "Building Side Projects That Actually Matter",
-    slug: "building-meaningful-side-projects",
-    content:
-      "Side projects are proof of skill, not portfolio decorations. Real projects solve problems, attract users, and force you to think beyond code.",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "22 Feb 2023",
-  },
-  {
-    title: "Learning Frontend Without Framework Addiction",
-    slug: "learning-frontend-without-framework-addiction",
-    content:
-      "Frameworks change constantly. Fundamentals don’t. Developers who master HTML, CSS, and JavaScript adapt faster and write better code long-term.",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "18 Mar 2023",
-  },
-  {
-    title: "Discipline Beats Motivation Every Single Time",
-    slug: "discipline-beats-motivation",
-    content:
-      "Motivation is emotional and unreliable. Discipline is boring, predictable, and effective. Professionals don’t wait to feel inspired before doing the work.",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "02 Apr 2023",
-  },
-  {
-    title: "Why Tutorials Alone Will Never Make You Job-Ready",
-    slug: "tutorials-wont-make-you-job-ready",
-    content:
-      "Tutorials are passive learning. Real growth comes from building things, making mistakes, debugging, and shipping incomplete but working projects.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "20 Apr 2023",
-  },
-  {
-    title: "How to Think Like a Developer Instead of a Student",
-    slug: "think-like-a-developer",
-    content:
-      "Students wait for instructions. Developers identify problems, research solutions, and take ownership. The mindset shift matters more than technical skill.",
-    image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "08 May 2023",
-  },
-  {
-    title: "Shipping Small Features Beats Planning Big Ideas",
-    slug: "shipping-small-features",
-    content:
-      "Overplanning kills momentum. Shipping small, imperfect features creates feedback loops and real progress. Momentum beats perfection.",
-    image:
-      "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "26 May 2023",
-  },
-  {
-    title: "Why Clean Code Is About Communication, Not Style",
-    slug: "clean-code-is-communication",
-    content:
-      "Clean code is readable code. It is written for humans first, machines second. Naming, structure, and clarity matter more than clever tricks.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1160",
-    createdAt: "12 Jun 2023",
-  },
-];
+// 1. Fixed getStaticPaths Logic
 export function getStaticPaths() {
-  return blogs.map(({slug, title, content, createdAt, image}) => ({
-    params: { slug, title, content, createdAt, image},
+  const blogs = [
+    {
+      title: "How to Learn Programming the Right Way",
+      slug: "how-to-learn-programming",
+      content: "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
+      createdAt: "15 Nov 2022",
+      category: "Education"
+    },
+    {
+      title: "How to Learn Programming the Right Way",
+      slug: "how-to-learn-programming",
+      content: "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
+      createdAt: "15 Nov 2022",
+      category: "Education"
+    },
+    // ... other blogs
+  ];
+
+  return blogs.map((post) => ({
+    params: { slug: post.slug }, // This creates the URL
+    props: { post },            // This passes the data to the component
   }));
 }
-const {  title, content, createdAt, image } = Astro.params;
+
+// 2. Access the data from Props (not Params)
+const { post } = Astro.props;
 ---
 
-<Layout>
-  <article class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 max-w-3xl">
-    <h1 class="text-4xl font-medium font-ovo text-gray-900">
-      {title}
-    </h1>
-    <p class="mt-2 text-sm text-gray-500">
-      {createdAt}
-    </p>
-    <div class="mt-8 text-gray-700 leading-relaxed">
-      {content}
+<Layout title={post.title}>
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-black z-[110] transition-all duration-150 w-0"></div>
+
+  <main class="bg-white min-h-screen pb-20">
+    <header class="pt-16 md:pt-24 pb-12 container mx-auto px-5 sm:px-8 max-w-4xl">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 rounded-full bg-neutral-100 text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+           {post.category || "Article"}
+        </span>
+        <span class="text-neutral-300">•</span>
+        <time class="text-sm font-ovo text-neutral-500">{post.createdAt}</time>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-medium font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance">
+        {post.title}
+      </h1>
+      
+      <div class="mt-8 flex items-center gap-4 border-t border-neutral-100 pt-8">
+        <div class="w-10 h-10 rounded-full bg-neutral-200 overflow-hidden">
+          <img src="/avatar.jpg" alt="Author" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-sm font-bold font-outfit text-neutral-900">Your Name</p>
+          <p class="text-xs text-neutral-500 font-ovo">5 min read</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-5 sm:px-8 max-w-5xl mb-16">
+      <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
+        <img 
+          src={post.image} 
+          alt={post.title} 
+          class="w-full h-[40vh] md:h-[60vh] object-cover hover:scale-105 transition-transform duration-700" 
+        />
+      </div>
     </div>
-    <img src={image} alt={title} class="w-full h-auto mt-8 rounded-lg" />
-  </article>
+
+    <article class="container mx-auto px-5 sm:px-8 max-w-2xl">
+      <div class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800">
+        {/* NOTE: When you move to Strapi Markdown, 
+           you will render the HTML here using:
+           <div set:html={renderedMarkdown} /> 
+        */}
+        <p class="first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left">
+          {post.content}
+        </p>
+        
+        {/* Placeholder for long content */}
+        <p class="mt-6">
+          Setting up a solid foundation is the most critical step in any developer's journey. 
+          The modern web moves fast, but the principles of logic and problem solving remain constant.
+        </p>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-neutral-100 flex flex-wrap gap-2">
+        <span class="text-sm font-medium text-neutral-400">Tagged:</span>
+        <a href="#" class="text-sm font-medium text-neutral-900 hover:underline">#programming</a>
+        <a href="#" class="text-sm font-medium text-neutral-900 hover:underline">#mindset</a>
+      </div>
+    </article>
+  </main>
 </Layout>
+
+<script>
+  // Simple Scroll Progress Logic
+  window.onscroll = function() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById("progress-bar");
+    if (bar) bar.style.width = scrolled + "%";
+  };
+</script>

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { ArrowRightIcon } from "@lucide/astro";
 
-const { title, content, imageUrl, createdAt , linkHref , linkText , linkIcon } = Astro.props;
+const { title, seoDescription, imageUrl, createdAt , linkHref , linkText , linkIcon } = Astro.props;
 
 
 const iconMap = {
@@ -12,40 +12,49 @@ const iconMap = {
 const Icon = iconMap[linkIcon as keyof typeof iconMap] ;
 
 const STRAPI_URL = "http://localhost:1337";
-const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "";
+// const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "";
 ---
 
 <article
-  class="overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:shadow-md"
+  class="group overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1"
 >
-  <!-- Image -->
-  <a href={`/blogs`} class="block">
-    <Image src={image} alt={title} class="h-56 w-full object-cover" width={100} height={100} />
+  <a href={`/blogs`} class="block overflow-hidden">
+    <Image 
+      src={imageUrl} 
+      alt={title} 
+      class="h-56 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" 
+      width={400} 
+      height={250} 
+    />
   </a>
 
-  <!-- Content -->
-  <div class="p-4">
-    <p class="text-sm text-gray-500 font-medium font-ovo">
-      {createdAt}
-    </p>
+  <div class="p-6">
+    {createdAt && (
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-1 h-1 rounded-full bg-neutral-400"></span>
+      <p class="text-[12px] uppercase tracking-widest text-neutral-500 font-medium font-ovo">
+          {createdAt}
+        </p>
+      </div>
+    )}
 
-    <a href={`/blogs`} class="block mt-2">
-      <h3 class="text-lg font-medium text-gray-900 leading-snug">
+    <a href={`/blogs`} class="block">
+      <h3 class="text-xl font-semibold text-neutral-900 leading-tight tracking-tight hover:text-neutral-700 transition-colors">
         {title}
       </h3>
     </a>
 
-    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-600 font-medium font-ovo">
-      {content}
+    <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-neutral-600 font-normal font-ovo">
+      {seoDescription}
     </p>
 
-    { linkHref && linkText && linkIcon && (
+    { linkHref && linkText && (
       <a
         href={linkHref}
-        class="group mt-4 inline-flex items-center gap-1 text-md font-medium font-ovo text-gray-900"
+        class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold font-ovo text-black border-b border-transparent hover:border-black transition-all pb-0.5"
       >
         {linkText}
-        {Icon && <Icon class="w-4 h-4 transition-transform group-hover:translate-x-1 text-gray-900" />}
+        {Icon && <Icon class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />}
       </a>
     )}
   </div>

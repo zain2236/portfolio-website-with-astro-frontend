@@ -25,13 +25,18 @@ import Button from "../../ui/button.astro";
       <div class="mt-10 flex flex-wrap gap-4">
         <Button 
           title="View All Projects" 
-          bgColor="bg-black" 
-          textColor="text-white" 
-          href="#projects" 
+          bgColor="black" 
+          textColor="white" 
+          href="#" 
+           iconName="ArrowRight"
         />
-        <div class="w-fit flex items-center justify-between md:py-2 py-1.5 md:px-5.5 px-3.5 md:gap-x-1 gap-x-1 border hover:translate-y-[-2px] hover:shadow-md transition-all duration-150 border-gray-300 rounded-full bg-transparent">
-          <a href="/contact" class="text-sm font-medium font-ovo tracking-wide cursor-pointer text-gray-900">Get In Touch</a>
-        </div>
+        <Button 
+        title="Get In Touch" 
+        bgColor="transparent" 
+        textColor="black" 
+        href="#"
+        iconName="ArrowRight"
+      />
       </div>
     </div>
   </div>

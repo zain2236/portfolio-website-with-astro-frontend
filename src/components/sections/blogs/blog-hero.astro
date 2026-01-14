@@ -1,0 +1,64 @@
+---
+import Button from "../../ui/button.astro";
+---
+
+<section class="relative overflow-hidden py-16 sm:py-24 lg:py-32">
+  {/* Soft background glow - responsive positioning */}
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none opacity-50"
+  >
+    <div
+      class="absolute top-[-10%] left-[-20%] w-[100%] md:w-[50%] h-[40%] rounded-full bg-neutral-100 blur-[100px]"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="max-w-4xl">
+      {/* Label */}
+      <div class="flex items-center gap-3 mb-6 md:mb-8">
+        <span class="w-6 md:w-10 h-[1px] bg-neutral-300"></span>
+        <span
+          class="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-neutral-500 font-bold font-outfit"
+        >
+          Selected Writing
+        </span>
+      </div>
+
+      {/* Heading - Fluid size and text-balance */}
+      <h1
+        class="text-4xl sm:text-6xl lg:text-8xl font-medium leading-[1.1] text-neutral-950 font-ovo tracking-tight text-balance"
+      >
+        Writing about <br class="hidden sm:block" />
+        <span class="text-neutral-400 italic">things that matter.</span>
+      </h1>
+
+      {/* Description - Max-width prose for readability */}
+      <p
+        class="mt-6 md:mt-8 max-w-prose text-base sm:text-lg md:text-xl text-neutral-600 leading-relaxed font-ovo"
+      >
+        Practical insights on development, design, and building products focused
+        on <span class="text-neutral-900">clarity over hype.</span>
+      </p>
+
+      {/* Buttons - Stack on mobile, row on desktop */}
+      <div
+        class="mt-10 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6"
+      >
+        <Button
+          title="Read Posts"
+          bgColor="black"
+          href="/blogs"
+          iconName="ArrowRight"
+        />
+
+        <Button
+          title="About Me"
+          iconName="ArrowRight"
+          bgColor="transparent"
+          href="/about"
+        />
+      </div>
+    </div>
+  </div>
+</section>

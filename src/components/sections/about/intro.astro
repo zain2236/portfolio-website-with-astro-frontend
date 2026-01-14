@@ -1,12 +1,18 @@
+---
+import { Image } from "astro:assets";
+import userImage from "../../../assets/about-hero.png";
+import Button from "../../ui/button.astro";
+---
+
 
 <main class="max-w-7xl mx-auto px-6 pt-16 pb-32">
     
     <!-- Hero Section -->
     <section class="grid md:grid-cols-12 gap-12 items-start mb-32">
         <div class="md:col-span-5 relative group">
-            <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+            <div class="aspect-4/5 bg-gray-100 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
                 <div class="w-full h-full flex items-center justify-center text-gray-400 italic">
-                    [Photo of Zain Bukhari]
+                   <Image src={userImage} alt="user image" class="w-full h-full object-cover" />
                 </div>
             </div>
             <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl hidden lg:block border border-gray-100">
@@ -17,26 +23,26 @@
 
         <div class="md:col-span-7 pt-4">
             <span class="text-sm uppercase tracking-[0.3em] text-gray-400 mb-4 block font-outfit">Introduction</span>
-            <h1 class="text-6xl md:text-7xl mb-8 leading-tight">Hi! I'm Zain Bukhari</h1>
-            <p class="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 font-light">
-                Frontend web developer based in <span class="text-black font-medium">DG Khan, Pakistan</span>. 
+            <h1 class="text-5xl md:text-6xl lg:text-7xl mb-8 leading-tight font-ovo tracking-wide font-medium">I'm Zain Bukhari</h1>
+            <p class="text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed mb-8 font-medium font-outfit">
+                Frontend web developer based in <span class="text-black font-medium font-ovo">DG Khan, Pakistan</span>. 
                 I have 5+ years of experience working with companies like 
-                <span class="italic underline decoration-gray-300">Google, Facebook, and Apple</span>.
+                <span class="italic underline decoration-gray-300 font-ovo"> Google, Facebook, and Apple</span>.
             </p>
             
             <div class="flex flex-wrap gap-4 mb-12">
-                <button class="bg-black text-white px-8 py-4 rounded-full font-medium hover:opacity-80 transition">Contact Me</button>
-                <button class="border border-gray-200 px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition">My Resume</button>
+                <Button title="Contact Me" bgColor="black" textColor="white" href="/contact" iconName="ArrowRight" />
+                <Button title="My Resume" bgColor="transparent" textColor="black" href="/resume" iconName="Download" />
             </div>
 
-            <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100">
-                <h3 class="text-2xl mb-4">Professional Profile</h3>
-                <p class="text-gray-600 leading-relaxed">
+            <!-- <div class="bg-gray-100/80 backdrop-blur-sm p-8 rounded-3xl border border-gray-100">
+                <h3 class="text-3xl mb-4 font-ovo tracking-wide font-medium">Professional Profile</h3>
+                <p class="text-gray-600 text-lg leading-relaxed font-outfit">
                     Professional software developer with hands-on experience in building modern web applications using 
                     <strong>React, Astro, and headless CMS solutions like Strapi</strong>. Skilled in integrating APIs, 
                     managing databases, and developing clean, scalable front-end and back-end features.
                 </p>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -53,14 +59,14 @@
 
             <h2 class="text-4xl mt-16 mb-12">Expertise</h2>
             <div class="flex flex-wrap gap-3">
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">JavaScript</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">React</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">React-router v7</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">Astro</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">Tailwind CSS</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">C++</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">Strapi</span>
-                <span class="px-5 py-2 bg-gray-100 rounded-full text-sm font-medium border border-gray-200">Node.js</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit  ">JavaScript</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit ">React</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">React-router v7</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">Astro</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">Tailwind CSS</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">C++</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">Strapi</span>
+                <span class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit">Node.js</span>
             </div>
         </div>
 
@@ -112,7 +118,7 @@
     </section>
 
     <!-- Services Section (from PDF "What I Offer") -->
-    <section class="mb-32">
+    <section class="mb-32"> 
         <span class="text-sm uppercase tracking-[0.3em] text-center text-gray-400 mb-4 block">What I Offer</span>
         <h2 class="text-5xl text-center mb-16">My Services</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

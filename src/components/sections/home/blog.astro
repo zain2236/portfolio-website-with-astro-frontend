@@ -23,12 +23,10 @@ const {data} = Astro.props;
         data?.blogCard?.slice(0, 3).map((blog : any) => (
           <BlogCard
             title={blog.title}
-            content={blog.description}
+            seoDescription={blog.description}
             imageUrl={blog.blogPic.url}
-            createdAt={new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             linkHref={blog.blogCta?.href}
             linkText={blog.blogCta?.title}
-            linkIcon={blog.blogCta?.iconName}
           />
         ))
     }

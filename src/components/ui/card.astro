@@ -11,7 +11,7 @@ const iconMap = {
 
 const Icon = iconMap[icon as keyof typeof iconMap] ;
 ---
-<div class="p-4 border border-gray-300 rounded-md shadow-sm overflow-hidden">
+<div class="p-4 border border-gray-200/60 bg-white rounded-md shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 hover:-translate-y-1">
    { Icon && <Icon class="w-7 h-7 text-gray-600 my-5.5 " />}
     <p class="text-md font-semibold text-gray-700 tracking-wider font-outfit mb-3">{title}</p>
     <p class="text-sm text-gray-600 tracking-wide font-ovo">{description}</p>

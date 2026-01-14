@@ -1,39 +1,59 @@
 ---
 import BlogCard from "../../ui/blog-card.astro";
+import programmingImage from "../../../assets/programing.avif";
 
 const blogs = [
   {
     title: "How to Learn Programming the Right Way",
     slug: "how-to-learn-programming",
     content: "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically.",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
+    image:programmingImage,
     createdAt: "15 Nov 2022",
   },
   // ... (rest of your blog data)
 ];
 ---
 
-<section class="container mx-auto px-4 md:px-6 lg:px-8 py-20">
-  <div class="mb-14 max-w-2xl">
-    <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 font-ovo tracking-wide">
-      Latest Articles
-    </h2>
-    <p class="mt-4 text-gray-700 font-medium font-ovo tracking-wide">
-      Thoughtful writing on development, productivity, and mindset.
-    </p>
+<section class="container mx-auto px-5 sm:px-8 lg:px-12 py-20 lg:py-32">
+  {/* Header Area with Flex-Adjustment for Mobile */}
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl md:text-5xl font-medium text-neutral-950 font-ovo tracking-tight">
+        Latest Articles
+      </h2>
+      <p class="mt-4 text-base md:text-lg text-neutral-600 font-ovo max-w-md">
+        Thoughtful writing on development, productivity, and mindset.
+      </p>
+    </div>
+    
+    <a href="/blogs" class="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-neutral-400 hover:text-black transition-colors">
+      View Archive
+      <span class="w-8 h-px bg-neutral-200 group-hover:bg-black transition-all"></span>
+    </a>
   </div>
 
-  <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-    {blogs && blogs.map((blog) => (
-      <BlogCard
-        title={blog.title}
-        content={blog.content}  {/* Changed 'content' to 'description' to match your component props */}
-        imageUrl={blog.image}        {/* Changed 'imageUrl' to 'image' for consistency */}
-        createdAt={blog.createdAt}      {/* Changed 'createdAt' to 'date' */}
-        linkHref={`/blog/${blog.slug}`}
-        linkText="Read Article"
-        linkIcon="ArrowRightIcon"
-      />
-    ))}
-    </div>
+  {/* Responsive Grid - Adjusted Gap for better white space */}
+  <div class="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+    {blogs && blogs.length > 0 ? (
+      blogs.map((blog) => (
+        <BlogCard
+          title={blog.title}
+          content={blog.content} 
+          imageUrl={blog.image} 
+          createdAt={new Date(blog.createdAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          })}
+          linkHref={`/blogs/${blog.slug}`}
+          linkText="Read Article"
+          linkIcon="ArrowRightIcon"
+        />
+      ))
+    ) : (
+      <div class="col-span-full py-20 text-center border-2 border-dashed border-neutral-100 rounded-3xl">
+        <p class="text-neutral-400 font-ovo">No articles found at the moment.</p>
+      </div>
+    )}
+  </div>
 </section>
