@@ -11,9 +11,21 @@ import Blog from "../components/sections/home/blog.astro";
 const URL =
   "http://localhost:1337/api/home-page?populate[blocks][on][sections.hero][populate][ProfilePicture][fields][0]=url&populate[blocks][on][sections.hero][populate][heroCta][populate]=*&populate[blocks][on][sections.intro][populate][aboutPic][fields][0]=url&populate[blocks][on][sections.intro][populate][aboutCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.services][populate][serviceCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.skills][populate][skillComponent][populate][skillBar][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][link][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][projectPic][fields][0]=url&populate[blocks][on][sections.projects][populate][projectCta][populate]=*&populate[blocks][on][sections.blogs][populate][blogCard][populate][blogPic][fields][0]=url&populate[blocks][on][sections.blogs][populate][blogCta][populate]=*&populate[blocks][on][sections.contact][populate][socialContact][populate]=*&populate[blocks][on][sections.contact][populate][contactCta][populate]=*";
 async function loadData() {
-  const request = await fetch(URL);
+  try{
+
+    const request = await fetch(URL);
+
+    
   const response = await request.json();
-  return response.data || "";
+  if (!request.ok) {
+      throw new Error("Server is down");
+    }
+  return response?.data || "";
+  }catch(error){
+    console.error(error);
+  }
+
+  
 }
 
 const landingPage = await loadData();

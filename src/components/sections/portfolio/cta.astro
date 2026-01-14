@@ -1,0 +1,69 @@
+---
+import Button from "../../ui/button.astro";
+---
+
+<section id="contact" class="relative bg-white overflow-hidden">
+  <div class="container mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-32">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 md:gap-20">
+        {/* Left Content */}
+        <div class="max-w-2xl">
+          <span class="text-xs md:text-sm uppercase tracking-[0.2em] text-gray-600 font-medium font-outfit">
+            Let's Connect
+          </span>
+          <h2 class="mt-6 text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.15] text-gray-900 font-ovo tracking-wide">
+            Let's start something <br class="hidden md:block" />
+            <span class="italic">extraordinary.</span>
+          </h2>
+          <p class="mt-6 text-base md:text-lg text-gray-700 leading-relaxed font-medium font-ovo tracking-wide max-w-md">
+            Currently accepting freelance inquiries and full-stack collaborations for 2026.
+          </p>
+        </div>
+
+        {/* Right Content */}
+        <div class="flex flex-col gap-8 w-full md:w-auto">
+          <a 
+            href="mailto:hello@zain.dev" 
+            class="text-3xl md:text-4xl lg:text-5xl font-ovo text-gray-900 hover:italic transition-all duration-300 hover:text-black"
+          >
+            hello@zain.dev
+          </a>
+          <div class="flex flex-wrap gap-6 md:gap-10 text-xs md:text-sm font-medium uppercase tracking-[0.2em] mt-4 font-outfit">
+            <a 
+              href="#" 
+              class="text-gray-600 hover:text-black hover:line-through transition-all duration-300"
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="#" 
+              class="text-gray-600 hover:text-black hover:line-through transition-all duration-300"
+            >
+              GitHub
+            </a>
+            <a 
+              href="#" 
+              class="text-gray-600 hover:text-black hover:line-through transition-all duration-300"
+            >
+              Twitter
+            </a>
+          </div>
+          <div class="mt-4">
+            <Button 
+              title="Get In Touch" 
+              bgColor="bg-black" 
+              textColor="text-white" 
+              href="/contact" 
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Large Background Element */}
+    <div class="absolute -bottom-20 -right-20 text-[15rem] md:text-[20rem] font-ovo text-gray-50 opacity-30 select-none pointer-events-none">
+      Z
+    </div>
+  </div>
+</section>
+

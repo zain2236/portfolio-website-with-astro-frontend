@@ -1,0 +1,38 @@
+---
+import Button from "../../ui/button.astro";
+---
+
+<section class="relative bg-white">
+  <div class="container mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-32">
+    <div class="max-w-7xl mx-auto">
+      {/* Label - Using Outfit for that modern clean feel */}
+      <span class="text-xs md:text-sm uppercase tracking-[0.2em] text-gray-600 font-medium font-outfit">
+        Portfolio
+      </span>
+
+      {/* Heading - Using Ovo for elegant serif branding */}
+      <h1 class="mt-6 text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.15] text-gray-900 font-ovo tracking-wide">
+        Selected <br class="hidden md:block" /> 
+        <span class="italic">Works</span>
+      </h1>
+
+      {/* Description - Optimized for readability */}
+      <p class="mt-6 text-base md:text-lg text-gray-700 leading-relaxed font-medium font-ovo tracking-wide max-w-2xl">
+        A curated collection of projects showcasing innovative solutions, clean design, and technical excellence across web development and digital experiences.
+      </p>
+
+      {/* Action Area */}
+      <div class="mt-10 flex flex-wrap gap-4">
+        <Button 
+          title="View All Projects" 
+          bgColor="bg-black" 
+          textColor="text-white" 
+          href="#projects" 
+        />
+        <div class="w-fit flex items-center justify-between md:py-2 py-1.5 md:px-5.5 px-3.5 md:gap-x-1 gap-x-1 border hover:translate-y-[-2px] hover:shadow-md transition-all duration-150 border-gray-300 rounded-full bg-transparent">
+          <a href="/contact" class="text-sm font-medium font-ovo tracking-wide cursor-pointer text-gray-900">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
