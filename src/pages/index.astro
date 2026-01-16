@@ -1,63 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/sections/home/hero.astro";
-import Intro from "../components/sections/home/intro.astro";
-import Skills from "../components/sections/home/skills.astro";
-import Services from "../components/sections/home/services.astro";
-import Projects from "../components/sections/home/projects.astro";
-import Contact from "../components/sections/home/contact.astro";
-import Blog from "../components/sections/home/blog.astro";
+import BlockRenderer from "../components/layout/blockRenderer.astro";
 
 const URL =
   "http://localhost:1337/api/home-page?populate[blocks][on][sections.hero][populate][ProfilePicture][fields][0]=url&populate[blocks][on][sections.hero][populate][heroCta][populate]=*&populate[blocks][on][sections.intro][populate][aboutPic][fields][0]=url&populate[blocks][on][sections.intro][populate][aboutCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.services][populate][serviceCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.skills][populate][skillComponent][populate][skillBar][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][link][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][projectPic][fields][0]=url&populate[blocks][on][sections.projects][populate][projectCta][populate]=*&populate[blocks][on][sections.blogs][populate][blogCard][populate][blogPic][fields][0]=url&populate[blocks][on][sections.blogs][populate][blogCta][populate]=*&populate[blocks][on][sections.contact][populate][socialContact][populate]=*";
+
 async function loadData() {
-  try{
-
+  try {
     const request = await fetch(URL);
+    const response = await request.json();
 
-    
-  const response = await request.json();
-  if (!request.ok) {
+    if (!request.ok) {
       throw new Error("Server is down");
     }
-  return response?.data || "";
-  }catch(error){
+    return response?.data || null;
+  } catch (error) {
     console.error(error);
+    return null;
   }
-
-  
 }
 
 const landingPage = await loadData();
-
-// Hero Section
-const heroSection = landingPage?.blocks[0];
-
-// Intro Section
-const introSection = landingPage?.blocks[1];
-
-// Services Section
-const servicesSection = landingPage?.blocks[2];
-
-// Skills Section
-const skillsSection = landingPage?.blocks[3];
-
-// Projects Section
-const projectsSection = landingPage?.blocks[4];
-
-// Blogs Section
-const blogsSection = landingPage?.blocks[5];
-
-// Contact Section
-const contactSection = landingPage?.blocks[6];
+const blocks = landingPage?.blocks || [];
 ---
 
 <Layout>
-  <Hero data={heroSection} />
-  <Intro data={introSection} />
-  <Services data={servicesSection} />
-  <Skills data={skillsSection} />
-  <Projects data={projectsSection} />
-  <Blog data={blogsSection} />
-  <Contact data={contactSection} />
+  {blocks.map((block: any) => <BlockRenderer block={block} />)}
 </Layout>

@@ -1,27 +1,34 @@
 ---
 import Button from "../ui/button.astro";
+import Sidebar from "./sidebar.jsx";
 
 const { data } = Astro.props;
 ---
 
-<div id="scroll-trigger" class="h-[2px]"></div>
+<div id="scroll-trigger" class="h-[1px]"></div>
+
 <header
   id="site-header"
-  class="sticky top-0 z-100 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300 ease-out"
+  class="sticky top-0 z-50 transition-all duration-300 ease-out"
 >
   <nav
     class="container mx-auto flex justify-between items-center py-3 px-4 md:px-6 lg:px-8"
   >
+    {/* Logo Area */}
     <div>
-      <h1 class="text-2xl font-bold font-outfit tracking-wide text-gray-900">
-        {data?.logo?.title ? data.logo.title : "Add Logo"}<span
-          class="text-4xl font-bold font-outfit">.</span
-        >
-      </h1>
+      <a href="/">
+        <h1 class="text-2xl font-bold font-outfit tracking-wide text-gray-900">
+          {data?.logo?.title ? data.logo.title : "Add Logo"}<span
+          class="text-4xl font-bold font-outfit text-gray-900">.</span
+          >
+        </h1>
+      </a>
     </div>
+
+    {/* Desktop Nav */}
     <ul
       id="nav-list"
-      class="hidden md:flex gap-x-9 py-2.5 px-5.5 rounded-full shadow-sm"
+      class="hidden md:flex gap-x-9 py-2.5 px-5.5 rounded-full"
     >
       {
         data?.navLinks &&
@@ -30,7 +37,7 @@ const { data } = Astro.props;
               <li>
                 <a
                   href={navLink.href}
-                  class="inline-block text-sm text-shadow-gray-800 hover:text-black font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200 cursor-pointer"
+                  class="inline-block text-sm text-gray-800 hover:text-black font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200 cursor-pointer"
                 >
                   {navLink.title}
                 </a>
@@ -39,39 +46,39 @@ const { data } = Astro.props;
           })
       }
     </ul>
-    <Button
-      title={data?.callToAction?.title}
-      bgColor={data?.callToAction?.ctaTheme}
-      textColor={data?.callToAction?.textColor}
-      iconName={data?.callToAction?.iconName}
-      href={data?.callToAction?.href}
-    />
+
+    {/* CHANGE 2: Wrapped Button and Sidebar in a div for proper spacing */}
+    <div class="flex items-center gap-4">
+      
+      {/* Added hidden sm:block so button doesn't cramp mobile screen */}
+      <div class="hidden md:block">
+        <Button
+            title={data?.callToAction?.title}
+            bgColor={data?.callToAction?.ctaTheme}
+            textColor={data?.callToAction?.textColor}
+            iconName={data?.callToAction?.iconName}
+            href={data?.callToAction?.href}
+        />
+      </div>
+
+      <Sidebar client:idle />
+    </div>
   </nav>
 </header>
 
 <script>
-  const header = document.getElementById("site-header") as HTMLElement;
-  const navList = document.getElementById("nav-list") as HTMLElement;
-  const trigger = document.getElementById("scroll-trigger") as HTMLElement;
+  const header = document.getElementById("site-header");
+  const navList = document.getElementById("nav-list");
+  const trigger = document.getElementById("scroll-trigger");
 
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (!entry.isIntersecting) {
-        // SCROLLED STATE
         header?.classList.add("bg-white/90", "backdrop-blur-sm", "shadow-sm");
-
         navList?.classList.remove("bg-white", "shadow-sm");
-        navList?.classList.add("bg-transparent");
       } else {
-        // TOP STATE
-        header?.classList.remove(
-          "bg-white/90",
-          "backdrop-blur-sm",
-          "shadow-sm"
-        );
-
+        header?.classList.remove("bg-white/90", "backdrop-blur-sm", "shadow-sm");
         navList?.classList.add("bg-white", "shadow-sm");
-        navList?.classList.remove("bg-transparent");
       }
     },
     {
@@ -80,5 +87,8 @@ const { data } = Astro.props;
     }
   );
 
-  observer.observe(trigger as Element);
+  // CHANGE 3: Added safety check
+  if (trigger) {
+    observer.observe(trigger);
+  }
 </script>
