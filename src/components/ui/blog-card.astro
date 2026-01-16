@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import { ArrowRightIcon } from "@lucide/astro";
+import { marked } from "marked";
+
+const {
+  title,
+  content,
+  imageUrl,
+  publishedAt,
+  linkHref,
+  linkText,
+  linkIcon,
+  description,
+} = Astro.props;
+
+const iconMap = {
+  ArrowRightIcon: ArrowRightIcon,
+};
+
+const Icon = iconMap[linkIcon as keyof typeof iconMap];
+
+const STRAPI_URL = "http://localhost:1337";
+const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "";
+
+let finalDescription = "";
+
+if (description) {
+  // Agar Landing Page se Pehle hi Plain Text aa raha hai
+  finalDescription =
+    description.length > 120
+      ? description.substring(0, 120) + "..."
+      : description;
+} else if (content) {
+  // Agar Blog Page se Markdown aa raha hai (to usay saaf karein)
+  const rawHtml = await marked.parse(content);
+  const plainText = rawHtml.toString().replace(/<[^>]*>?/gm, "");
+  finalDescription =
+    plainText.length > 120 ? plainText.substring(0, 120) + "..." : plainText;
+}
+---
+
+<article
+  class="group overflow-hidden rounded-2xl border border-neutral-100 bg-white transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1"
+>
+  <a href={`/blogs`} class="block overflow-hidden">
+    <Image
+      src={image}
+      alt={title}
+      class="h-56 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+      width={300}
+      height={200}
+      loading="lazy"
+      fetchpriority="low"
+      quality={60}
+      format="webp"
+    />
+  </a>
+
+  <div class="p-6">
+    {
+      publishedAt && (
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-1 h-1 rounded-full bg-neutral-400" />
+          <p class="text-[12px] uppercase tracking-widest text-neutral-500 font-medium font-ovo">
+            {new Date(publishedAt || "").toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
+        </div>
+      )
+    }
+
+    <a href={`/blogs`} class="block">
+      <h3
+        class="text-xl font-semibold text-neutral-900 leading-tight tracking-tight hover:text-neutral-700 transition-colors"
+      >
+        {title}
+      </h3>
+    </a>
+
+    <p
+      class="mt-3 line-clamp-3 text-sm leading-relaxed text-neutral-600 font-normal font-ovo"
+    >
+      {finalDescription}
+    </p>
+ 
+    {
+      linkHref && linkText && (
+        <a
+          href={linkHref}
+          class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold font-ovo text-black border-b border-transparent hover:border-black transition-all pb-0.5"
+        >
+          {linkText}
+          {Icon && (
+            <Icon class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          )}
+        </a>
+      )
+    }
+  </div>
+</article>

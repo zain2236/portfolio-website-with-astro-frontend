@@ -1,32 +1,182 @@
 ---
-import { Facebook , Instagram , Twitter , Linkedin } from "@lucide/astro";
+import { Facebook, Instagram, Twitter, Linkedin, Send } from "@lucide/astro";
 
+const { data } = Astro.props;
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="min-h-[40svh] bg-gray-200/60">
-    <div class="container mx-auto py-3.5 px-4 md:px-6 lg:px-8">
-        <div class="container mx-auto flex justify-between items-center mb-20">
-            <div>
-                <h1 class="text-2xl font-bold font-outfit tracking-wide text-gray-900">JAIN<span class="text-4xl font-bold font-outfit ">.</span></h1>
-                <p class="text-sm font-medium font-ovo tracking-wide text-gray-700">Frrontend Developer</p>
-            </div>
-            <ul class="flex gap-x-9 py-2.5 px-5.5 ">
-                <li><a href="/" class="inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px]  transition-all duration-200">Home</a></li>
-                <li><a href="/about" class=" inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200">About</a></li>
-                <li><a href="/blog" class=" inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200">Blog</a></li>
-                <li><a href="/portfolio" class=" inline-block text-sm font-medium font-ovo tracking-wide hover:-translate-y-[2px] transition-all duration-200">Portfolio</a></li>
-            </ul>
-            <div class="flex items-center gap-x-4">
-                <Facebook class="w-8 h-8 bg-gray-200 rounded-full p-1.5 hover:-translate-y-[2px] transition-all duration-200 cursor-pointer" />
-                <Instagram class="w-8 h-8 bg-gray-200 rounded-full p-1.5 hover:-translate-y-[2px] transition-all duration-200 cursor-pointer" />
-                <Twitter class="w-8 h-8 bg-gray-200 rounded-full p-1.5 hover:-translate-y-[2px] transition-all duration-200 cursor-pointer" />
-                <Linkedin class="w-8 h-8 bg-gray-200 rounded-full p-1.5 hover:-translate-y-[2px] transition-all duration-200 cursor-pointer" />
-            </div>
+<footer class="bg-gray-200 border-t border-zinc-100 text-zinc-900">
+  <div class="container mx-auto px-6 py-10 sm:py-14 lg:py-16">
+    <!-- Main Content Grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-16"
+    >
+      <!-- Brand & Description -->
+      <div class="flex flex-col gap-6 sm:gap-8">
+        <div>
+          <h1 class="text-2xl font-bold font-outfit tracking-tighter">
+            {data?.footerLogo ? data.footerLogo.title : "JAIN"}
+            <span class="text-zinc-500">.</span>
+          </h1>
+          <p
+            class="mt-4 sm:mt-6 text-sm font-ovo leading-relaxed text-zinc-600 max-w-xs"
+          >
+            {
+              data?.description ||
+                "Building digital experiences with focus on craft and minimalism."
+            }
+          </p>
         </div>
-        <hr class="my-4 border-gray-300 w-3/4 mx-auto">
-        <div class="text-center">
-            <p class="text-sm font-medium font-ovo tracking-wide text-gray-700">© 2025 JAIN. All rights reserved.</p>
-            <p class="text-sm font-medium font-ovo tracking-wide text-gray-700">Designed by <a href="https://www.linkedin.com/in/jain-kumar-b6253a200/" class="text-blue-500">Jain shah</a></p>
+
+        <!-- Social Icons: Improved visibility -->
+        <div class="flex gap-5">
+          <a
+            href="https://web.facebook.com/profile.php?id=100054423643568"
+            target="_blank"
+            aria-label="Facebook"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
+            <Facebook class="w-4 h-4" />
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            aria-label="Instagram"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
+            <Instagram class="w-4 h-4" />
+          </a>
+          <a
+            href="https://x.com/zainbukhari7"
+            target="_blank"
+            aria-label="Twitter"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
+            <Twitter class="w-4 h-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/zain-bukhari-7"
+            target="_blank"
+            aria-label="LinkedIn"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
+            <Linkedin class="w-4 h-4" />
+          </a>
         </div>
+      </div>
+
+      <!-- Navigation Column -->
+      <div>
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
+          Navigation
+        </h3>
+        <ul class="space-y-4">
+          {
+            data?.navigation?.map((nav: any) => (
+              <li>
+                <a
+                  href={nav.href}
+                  class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block"
+                >
+                  {nav.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div>
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
+          Services
+        </h3>
+        <ul class="space-y-4">
+          {
+            data?.services?.map((service: any) => (
+              <li>
+                <a
+                  href={service.href}
+                  class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block"
+                >
+                  {service.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Newsletter Column -->
+      <div class="flex flex-col">
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
+          Newsletter
+        </h3>
+        <p class="text-sm font-ovo text-zinc-600 leading-relaxed mb-6">
+          Subscribe for occasional updates on my latest work.
+        </p>
+        <form class="relative mt-2">
+          <input
+            type="email"
+            placeholder="Email Address"
+            class="w-full bg-white border border-zinc-200 rounded-xl py-3 px-4 text-sm outline-none focus:border-zinc-900 transition-all placeholder:text-zinc-400 shadow-sm"
+          />
+          <button
+            type="submit"
+            class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-zinc-900 text-white p-2 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer"
+            aria-label="Subscribe"
+          >
+            <Send class="w-4 h-4" />
+          </button>
+        </form>
+      </div>
     </div>
+
+    <!-- Bottom Bar: Refined Responsiveness -->
+    <div
+      class="mt-16 sm:mt-20 pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8"
+    >
+      <!-- Copyright -->
+      <div class="order-3 md:order-1 text-center md:text-left">
+        <p class="text-[10px] font-ovo text-zinc-500 uppercase tracking-widest">
+          © {year} JAIN. All rights reserved.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex gap-8 sm:gap-10 order-1 md:order-2">
+        <a
+          href=""
+          class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors"
+          >Privacy</a
+        >
+        <a
+          href=""
+          class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors"
+          >Terms</a
+        >
+      </div>
+
+      <!-- Credit -->
+      <p
+        class="text-[11px] font-ovo text-zinc-500 order-2 md:order-3 text-center md:text-right"
+      >
+        Handcrafted by
+        <a
+          href="https://www.linkedin.com/in/jain-kumar-b6253a200/"
+          class="text-zinc-900 font-medium hover:underline decoration-zinc-300 underline-offset-8"
+          target="_blank"
+        >
+          Jain Shah
+        </a>
+      </p>
+    </div>
+  </div>
 </footer>

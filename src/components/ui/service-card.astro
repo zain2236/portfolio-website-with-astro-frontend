@@ -1,22 +1,41 @@
 ---
 import { GlobeIcon , ArrowRightIcon , SmartphoneIcon , ImageIcon , SearchIcon } from '@lucide/astro';
-const { title, description , icons } = Astro.props;
+const { title, description , icons  , linkText , linkHref } = Astro.props;
 
 const iconMap = {
-    android: SmartphoneIcon,
-    globe: GlobeIcon,
-    picture: ImageIcon,
-    search: SearchIcon,
+    SmartphoneIcon: SmartphoneIcon,
+    GlobeIcon: GlobeIcon,
+    ImageIcon: ImageIcon,
+    SearchIcon: SearchIcon,
 };
 
 const Icon = iconMap[icons as keyof typeof iconMap] ;
+
 ---
-<div class="p-6 border border-gray-300 rounded-md shadow-sm ">
-    {Icon && <Icon class="w-9 h-9 border border-gray-400/10 bg-black/80 rounded-md p-1 text-white my-5.5" />}
-    <p class="text-lg font-semibold text-gray-700 tracking-wider font-outfit mb-3">{title}</p>
-    <p class="text-sm text-gray-600  font-ovo mb-6">{description}</p>
-    <div class="flex items-center gap-x-1.5 my-2 cursor-pointer ">
-        <p class="text-lg font-medium font-ovo tracking-wide text-gray-800 hover:text-black ">Read More</p>
-        <ArrowRightIcon class="w-4.5 h-4.5 text-gray-600" />
+
+
+<article class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+
+    <!-- Icon container -->
+    <div class="w-12 h-12 bg-gray-50 rounded-xl mb-6 flex items-center justify-center">
+      {Icon && <Icon class="w-6 h-6 text-gray-700" />}
     </div>
-</div>
+  
+    <!-- Title -->
+    <h3 class="text-xl font-bold mb-2 text-gray-800">
+      {title}
+    </h3>
+  
+    <!-- Description -->
+    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+      {description}
+    </p>
+  
+    <!-- Link -->
+    <a href={linkHref} class="text-sm font-semibold group flex items-center gap-2 text-gray-800">
+      {linkText}
+      <ArrowRightIcon class="w-4 h-4 text-gray-600 group-hover:translate-x-1 transition-transform" />
+    </a>
+  
+  </article>
+  

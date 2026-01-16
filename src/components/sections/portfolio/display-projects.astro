@@ -1,0 +1,85 @@
+---
+import ProjectCard from "../../ui/project-card.astro";
+import todoImage from "../../../assets/todo-image.png";
+import hotelImg from "../../../assets/hotel-img.jpg";
+import youtubeImg from "../../../assets/youtube-img.png";
+import aiImage from "../../../assets/ai-image.png";
+
+const projects = [
+    {
+        id: "01",
+        title: "Minimalist Task Engine",
+        description: "A clean, efficient task management application built with modern web technologies.",
+        tech: "React / Vite / Tailwind",
+        image: todoImage,
+        link: "#",
+        ctaTtile: "View Project",
+        category: "Web App"
+    },
+    {
+        id: "02",
+        title: "Hospitality SaaS",
+        description: "Comprehensive hotel management system with real-time booking and analytics.",
+        tech: "Postgres / Node / React",
+        image: hotelImg,
+        link: "#",
+        ctaTtile: "View Project",
+        category: "SaaS"
+    },
+    {
+        id: "03",
+        title: "Media Streaming",
+        description: "Modern video streaming platform with seamless playback and recommendations.",
+        tech: "API / React / Framer",
+        image: youtubeImg,
+        link: "#",
+        ctaTtile: "View Project",
+        category: "Web App"
+    },
+    {
+        id: "04",
+        title: "AI Asset Engine",
+        description: "Intelligent content generation platform powered by advanced AI models.",
+        tech: "OpenAI / Python / React",
+        image: aiImage,
+        link: "#",
+        ctaTtile: "View Project",
+        category: "AI/ML"
+    }
+];
+---
+
+<section id="projects" class="relative bg-white">
+  <div class="container mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-32">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="mb-12 md:mb-16">
+        <span class="text-xs md:text-sm uppercase tracking-[0.2em] text-gray-600 font-medium font-outfit">
+          Featured Projects
+        </span>
+        <h2 class="mt-4 md:mt-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] text-gray-900 font-ovo tracking-wide">
+          Recent Work
+        </h2>
+        <p class="mt-4 md:mt-6 text-sm md:text-base text-gray-700 leading-relaxed font-medium font-ovo tracking-wide max-w-2xl">
+          Exploring the intersection of design and technology through carefully crafted digital experiences.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {projects && projects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            link={project.link}
+            ctaTtile={project.ctaTtile}
+            category={project.category}
+            tech={project.tech}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+

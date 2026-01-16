@@ -1,0 +1,51 @@
+---
+import BlogCard from "../../ui/blog-card.astro";
+import Button from "../../ui/button.astro";
+
+const { data } = Astro.props;
+---
+
+<section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
+  <div class="text-center">
+    <p
+      class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo"
+    >
+      {data.subText}
+    </p>
+    <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">
+      {data.title}
+    </h2>
+    <p
+      class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo"
+    >
+      {data.description}
+    </p>
+  </div>
+  <div
+    class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 md:gap-8 sm:gap-6 md:py-12 py-8"
+  >
+    {
+      data?.blogCard &&
+        data?.blogCard
+          ?.slice(0, 3)
+          .map((blog: any) => (
+            <BlogCard
+              title={blog.title}
+              description={blog.description}
+              imageUrl={blog.blogPic.url}
+              linkHref={blog.blogCta?.href}
+              linkText={blog.blogCta?.title}
+            />
+          ))
+    }
+  </div>
+  <div class="grid place-items-center md:py-8 py-4">
+    <Button
+      title={data?.blogCta?.title}
+      bgColor={data?.blogCta?.ctaTheme}
+      textColor={data?.blogCta?.textColor}
+      iconName={data?.blogCta?.iconName}
+      href={data?.blogCta?.href}
+    />
+  </div>
+</section>

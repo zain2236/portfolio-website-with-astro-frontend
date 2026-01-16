@@ -1,0 +1,73 @@
+---
+import BlogCard from "../../ui/blog-card.astro";
+
+const URL =
+  "http://localhost:1337/api/blog-links?populate[blogPic][fields][0]=url";
+async function loadData() {
+  try {
+    const request = await fetch(URL);
+    const response = await request.json();
+    if (!request.ok) {
+      throw new Error("Server is down");
+    }
+    return response?.data || "";
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const blogs = await loadData();
+---
+
+<section class="container mx-auto px-5 sm:px-8 lg:px-12 py-20 lg:py-32">
+  {/* Header Area with Flex-Adjustment for Mobile */}
+  <div
+    class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6"
+  >
+    <div class="max-w-2xl">
+      <h2
+        class="text-3xl md:text-5xl font-medium text-neutral-950 font-ovo tracking-tight"
+      >
+        Latest Articles
+      </h2>
+      <p class="mt-4 text-base md:text-lg text-neutral-600 font-ovo max-w-md">
+        Thoughtful writing on development, productivity, and mindset.
+      </p>
+    </div>
+
+    <a
+      href="/blogs"
+      class="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-neutral-400 hover:text-black transition-colors"
+    >
+      View Archive
+      <span class="w-8 h-px bg-neutral-200 group-hover:bg-black transition-all"
+      ></span>
+    </a>
+  </div>
+
+  {/* Responsive Grid - Adjusted Gap for better white space */}
+  <div class="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      blogs && blogs.length > 0 ? (
+        blogs.map((blog: any) => (
+          <BlogCard
+            title={blog.title}
+            slug={blog.slug}
+            content={blog.content}
+            imageUrl={blog.blogPic.url}
+            publishedAt={blog.publishedAt}
+            linkHref={`/blogs/${blog.slug}`}
+            linkText="Read Article"
+            linkIcon="ArrowRightIcon"
+          />
+        ))
+      ) : (
+        <div class="col-span-full py-20 text-center border-2 border-dashed border-neutral-100 rounded-3xl">
+          <p class="text-neutral-400 font-ovo">
+            No articles found at the moment.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,347 @@
+---
+import { Image } from "astro:assets";
+import userImage from "../../../assets/about-hero.png";
+import Button from "../../ui/button.astro";
+---
+
+<main class="max-w-7xl mx-auto px-6 pt-16 pb-32">
+  <!-- Hero Section -->
+  <section class="grid md:grid-cols-12 gap-12 items-start mb-32">
+    <div class="md:col-span-5 relative group">
+      <div
+        class="aspect-4/5 bg-gray-100 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+      >
+        <div
+          class="w-full h-full flex items-center justify-center text-gray-400 italic"
+        >
+          <Image
+            src={userImage}
+            alt="A developer working on a minimalist workspace"
+            class="w-full h-full object-cover"
+            width={300}
+            height={250}
+            loading="eager"
+            fetchpriority="high"
+            quality={60}
+            format="webp"
+          />
+        </div>
+      </div>
+      <div
+        class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl hidden lg:block border border-gray-100"
+      >
+        <p class="text-3xl font-bold font-ovo">5+</p>
+        <p class="text-xs text-gray-500 uppercase tracking-widest">
+          Years Experience
+        </p>
+      </div>
+    </div>
+
+    <div class="md:col-span-7 pt-4">
+      <span
+        class="text-sm uppercase tracking-[0.3em] text-gray-400 mb-4 block font-outfit"
+        >Introduction</span
+      >
+      <h1
+        class="text-5xl md:text-6xl lg:text-7xl mb-8 leading-tight font-ovo tracking-wide font-medium"
+      >
+        I'm Zain Bukhari
+      </h1>
+      <p
+        class="text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed mb-8 font-medium font-outfit"
+      >
+        Frontend web developer based in <span
+          class="text-black font-medium font-ovo">DG Khan, Pakistan</span
+        >. I have 5+ years of experience working with companies like
+        <span class="italic underline decoration-gray-300 font-ovo">
+          Google, Facebook, and Apple</span
+        >.
+      </p>
+
+      <div class="flex flex-wrap gap-4 mb-12">
+        <Button
+          title="Contact Me"
+          bgColor="black"
+          textColor="white"
+          href="/contact"
+          iconName="ArrowRight"
+        />
+        <Button
+          title="My Resume"
+          bgColor="transparent"
+          textColor="black"
+          href="/resume"
+          iconName="Download"
+        />
+      </div>
+
+      <div
+        class="bg-white backdrop-blur-sm p-8 rounded-3xl border border-gray-100"
+      >
+        <h3 class="text-3xl mb-4 font-ovo tracking-wide font-medium">
+          Professional Profile
+        </h3>
+        <p class="text-gray-600 text-lg leading-relaxed font-outfit">
+          Professional software developer with hands-on experience in building
+          modern web applications using
+          <strong>React, Astro, and headless CMS solutions like Strapi</strong>.
+          Skilled in integrating APIs, managing databases, and developing clean,
+          scalable front-end and back-end features.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Skills -->
+  <section class="grid lg:grid-cols-2 gap-20 mb-32">
+    <div>
+      <h2 class="text-4xl mb-12">Education</h2>
+      <div class="relative pl-8 border-l border-gray-200 py-2">
+        <div
+          class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-black rounded-full"
+        >
+        </div>
+        <h3 class="text-xl font-semibold mb-2">
+          Bachelor of Science in Information Technology, 2022-2026
+        </h3>
+        <p
+          class="text-gray-500 italic mb-4 font-outfit uppercase text-xs tracking-widest"
+        >
+          Undergraduate Program
+        </p>
+        <p class="text-gray-600">
+          Focusing on Information Technology fundamentals, software engineering,
+          and systems architecture at university level.
+        </p>
+      </div>
+
+      <h2 class="text-4xl mt-16 mb-12">Expertise</h2>
+      <div class="flex flex-wrap gap-3">
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >JavaScript</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >React</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >React-router v7</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >Astro</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >Tailwind CSS</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >C++</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >Strapi</span
+        >
+        <span
+          class="px-5 py-2 bg-gray-100 hover:bg-gray-200 transition-all duration-150 rounded-full text-sm font-medium border border-gray-200 font-outfit"
+          >Node.js</span
+        >
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-4xl mb-12">Technical Proficiency</h2>
+      <div class="space-y-8">
+        <!-- HTML -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-end">
+            <span class="font-medium text-lg">HTML</span>
+            <span class="text-gray-400 font-light">90%</span>
+          </div>
+          <div class="w-full h-[2px] bg-gray-100">
+            <div class="h-full bg-black w-[90%]"></div>
+          </div>
+        </div>
+        <!-- Strapi -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-end">
+            <span class="font-medium text-lg">Strapi</span>
+            <span class="text-gray-400 font-light">90%</span>
+          </div>
+          <div class="w-full h-[2px] bg-gray-100">
+            <div class="h-full bg-black w-[90%]"></div>
+          </div>
+        </div>
+        <!-- JavaScript -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-end">
+            <span class="font-medium text-lg">JavaScript</span>
+            <span class="text-gray-400 font-light">85%</span>
+          </div>
+          <div class="w-full h-[2px] bg-gray-100">
+            <div class="h-full bg-black w-[85%]"></div>
+          </div>
+        </div>
+        <!-- Node.js -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-end">
+            <span class="font-medium text-lg">Node.js</span>
+            <span class="text-gray-400 font-light">85%</span>
+          </div>
+          <div class="w-full h-[2px] bg-gray-100">
+            <div class="h-full bg-black w-[85%]"></div>
+          </div>
+        </div>
+        <!-- CSS -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-end">
+            <span class="font-medium text-lg">CSS</span>
+            <span class="text-gray-400 font-light">80%</span>
+          </div>
+          <div class="w-full h-[2px] bg-gray-100">
+            <div class="h-full bg-black w-[80%]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section (from PDF "What I Offer") -->
+  <section class="mb-32">
+    <span
+      class="text-sm uppercase tracking-[0.3em] text-center text-gray-400 mb-4 block"
+      >What I Offer</span
+    >
+    <h2 class="text-5xl text-center mb-16">My Services</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Web Development -->
+      <div
+        class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
+      >
+        <div
+          class="w-12 h-12 bg-gray-50 rounded-xl mb-6 flex items-center justify-center"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg
+          >
+        </div>
+        <h3 class="text-xl font-bold mb-2">Web Development</h3>
+        <p class="text-sm text-gray-400 mb-4 italic">5+ years experience</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Building digital products with a focus on clean code and elegant
+          motion.
+        </p>
+        <a href="/about" class="text-sm font-semibold group flex items-center gap-2">
+          Read More <span class="group-hover:translate-x-1 transition-transform"
+            >&rarr;</span
+          >
+        </a>
+      </div>
+      <!-- UI/UX Design -->
+      <div
+        class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
+      >
+        <div
+          class="w-12 h-12 bg-gray-50 rounded-xl mb-6 flex items-center justify-center"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+            ></path></svg
+          >
+        </div>
+        <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+        <p class="text-sm text-gray-400 mb-4 italic">5+ years experience</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Creating professional and modern user interfaces for better
+          engagement.
+        </p>
+        <a href="/about" class="text-sm font-semibold group flex items-center gap-2">
+          Read More <span class="group-hover:translate-x-1 transition-transform"
+            >&rarr;</span
+          >
+        </a>
+      </div>
+      <!-- Mobile App -->
+      <div
+        class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
+      >
+        <div
+          class="w-12 h-12 bg-gray-50 rounded-xl mb-6 flex items-center justify-center"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+            ></path></svg
+          >
+        </div>
+        <h3 class="text-xl font-bold mb-2">Mobile App</h3>
+        <p class="text-sm text-gray-400 mb-4 italic">1+ years experience</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Developing cross-platform mobile solutions for iOS and Android.
+        </p>
+        <a href="/about" class="text-sm font-semibold group flex items-center gap-2">
+          Read More <span class="group-hover:translate-x-1 transition-transform"
+            >&rarr;</span
+          >
+        </a>
+      </div>
+      <!-- SEO -->
+      <div
+        class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white"
+      >
+        <div
+          class="w-12 h-12 bg-gray-50 rounded-xl mb-6 flex items-center justify-center"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+            ></path></svg
+          >
+        </div>
+        <h3 class="text-xl font-bold mb-2">SEO Optimization</h3>
+        <p class="text-sm text-gray-400 mb-4 italic">5+ years experience</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+          Optimizing web performance and search rankings for global visibility.
+        </p>
+        <a href="/about" class="text-sm font-semibold group flex items-center gap-2">
+          Read More <span class="group-hover:translate-x-1 transition-transform"
+            >&rarr;</span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,22 +1,65 @@
 ---
-   import { Image } from "astro:assets";
-   import profileImg from "../../../assets/profile-img.png";
-   import Button from "../../ui/button.astro";
+import { Image } from "astro:assets";
+import Button from "../../ui/button.astro";
+
+const { data } = Astro.props;
 ---
 
-<section class="container mx-auto py-12 ">
-    <div class="text-center  p-2">
-        <div class="w-28 rounded-full overflow-hidden mx-auto ">
-            <Image src={profileImg} alt="profile" class="w-full h-full object-cover">
-        </div>
-        <p class="text-lg tracking-wider font-medium font-ovo mt-2 ">Hi! I'm John Doe</p>
-        <div class="text-center my-4">
-            <h1 class="font-ovo font-medium text-6xl tracking-wide">frontend web develper <br> based in DG khan.</h1>
-        <p class="text-sm text-gray-800 tracking-wide font-medium font-ovo mt-4">I'm a frontend web developer from pakistan, with 5+ years of experience <br> in companies like Google , Facebook , Apple  etc.</p>
-        </div>
-        <div class="flex items-center justify-center gap-x-4 cursor-pointer mt-8 ">
-            <Button title="Contact" bgColor="bg-black" textColor="text-white" href="/contact"/>
-            <Button title="My Resume" bgColor="transparent" textColor="text-gray-900" downloadIcon="true" href="/resume"/>
-        </div>
+<section class="container mx-auto md:py-18 py-12 px-4 md:px-6 lg:px-8">
+  <div class="md:text-center sm:text-center text-left p-2">
+    <div
+      class="md:w-32 md:h-32 w-24 h-24 rounded-full overflow-hidden p-1 bg-linear-to-tr from-neutral-200 to-transparent md:mx-auto sm:mx-auto mx-0"
+    >
+      {
+        data?.ProfilePicture?.url && (
+          <Image
+            src={`http://localhost:1337${data?.ProfilePicture?.url}`}
+            alt="profile"
+            class="w-full h-full object-cover"
+            width={150}
+            height={150}
+            loading="eager"
+            fetchpriority="high"
+            quality={60}
+            format="webp"
+          />
+        )
+      }
     </div>
+
+    <p class="md:text-lg text-sm tracking-wider font-medium font-ovo mt-2">
+      {data?.subText}
+    </p>
+
+    <div class="md:text-center sm:text-center text-left my-4 max-w-2xl mx-auto">
+      <h1 class="font-ovo font-medium md:text-6xl text-4xl tracking-wide">
+        {data?.heading}
+      </h1>
+
+      <p
+        class="md:text-sm text-xs text-gray-800 tracking-wide font-medium font-ovo md:mt-4 mt-2"
+      >
+        {data?.description}
+      </p>
+    </div>
+
+    <div
+      class="flex items-center justify-start md:justify-center sm:justify-center gap-x-4 cursor-pointer mt-8"
+    >
+      {
+        data?.heroCta &&
+          data.heroCta?.map((cta: any) => {
+            return (
+              <Button
+                title={cta.title}
+                bgColor={cta.ctaTheme}
+                textColor={cta.textColor}
+                iconName={cta.iconName}
+                href={cta.href}
+              />
+            );
+          })
+      }
+    </div>
+  </div>
 </section>

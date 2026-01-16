@@ -1,25 +1,30 @@
 ---
 import { Image } from "astro:assets";
-import userImage from "../../../assets/user-image.png";
 import Card from "../../ui/card.astro";
+
+const {data} = Astro.props;
+
 ---
-<section class="container mx-auto py-12 ">
-    <div class="text-center">
-        <p class="text-md mb-1.5  tracking-wide font-medium font-ovo">Introduction</p>
-        <h2 class="text-4xl font-semibold font-ovo tracking-wide">About Me</h2>
+<section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+    {data && (
+    <div class="text-center ">
+        <p class="md:text-md text-xs md:mb-1.5 pb-1  tracking-wide font-medium font-ovo">{data.subText}</p>
+        <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">{data.title}</h2>
     </div>
-    <div class="grid grid-cols-2 gap-x-2 py-12">
-        <div class="h-96 p-4">
-            <Image src={userImage} alt="profile" class="w-full h-full object-contain">
+    <div class="grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-0  md:gap-x-4 md:py-12 py-8">
+        <div class="md:h-96 h-72 md:p-4 p-1">
+            <Image src={`http://localhost:1337${data.aboutPic.url}`} alt="A developer working on a minimalist workspace" class="w-full h-full object-contain" width={200} height={200} loading="lazy" fetchpriority="low" quality={60} format="webp">
         </div>
-        <div class="p-2">
-            <p class="text-md text-gray-800 tracking-wide font-medium font-ovo">Professional software developer with hands-on experience in building modern web applications using React, Astro, and headless CMS solutions like Strapi.
-                Skilled in integrating APIs, managing databases, and developing clean, scalable front-end and back-end features.</p>
-            <div class="grid grid-cols-3 gap-x-6 mt-10">
-                <Card title="Languages" description="JavaScript, React,React-router v7, Astro, Tailwind CSS, C++" icon="code" />
-                <Card title="Education" description="Bachelor of Science in Information Technology, 2022-2026" icon="education" />
-                <Card title="Projects" description="Youtube Clone, Portfolio Website, Hotel management system" icon="project" />
+        <div class="md:p-2 p-1">
+            <p class="md:text-md text-sm text-gray-700 font-medium tracking-wide font-ovo">{data.description}</p>
+            <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-6 sm:gap-4 gap-3 mt-10 ">
+                {data?.aboutCard && data.aboutCard?.map((card : any)=> {
+                    return (
+                        <Card title={card.title} description={card.description} icon={card.iconName} />
+                    )
+                })}
             </div>
         </div>
     </div>
+    )}
 </section>

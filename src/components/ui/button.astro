@@ -1,10 +1,29 @@
 ---
 import { ArrowRight , Download } from '@lucide/astro';
-const { title, bgColor, textColor , downloadIcon , href} = Astro.props;
+const { title, bgColor , iconName , href} = Astro.props;
+
+const iconMap = {
+    Download: Download,
+    ArrowRight: ArrowRight,
+}
+
+
+const Icon = iconMap[iconName as keyof typeof iconMap] ;
 ---
 
-<div class={`w-fit flex items-center justify-between py-2 px-5.5 gap-x-1.5 border hover:translate-y-[-2px] hover:shadow-md transition-all duration-150 border-gray-400 rounded-full ${bgColor} ${textColor}`}>
-    <a href={href} class={`text-sm font-medium font-ovo tracking-wide cursor-pointer ${textColor}`}>{title} </a>
-    {downloadIcon ? ( <Download class={`w-4 h-4 ${textColor} cursor-pointer`} />) :( <ArrowRight class={`w-4 h-4 ${textColor} cursor-pointer`} />) }
-   
+<div class={`
+    group w-fit flex items-center justify-center 
+    md:py-2.5 py-2 md:px-6 px-4 gap-x-2
+    border border-black/10 dark:border-white/20 
+    rounded-full transition-all duration-300 ease-out
+    hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:-translate-y-0.5
+    ${bgColor === 'black' ? 'hover:bg-black text-white bg-neutral-800' : 'bg-white/10 backdrop-blur-md text-current hover:bg-white/20'}
+`}>
+    <a href={href} class="text-sm font-medium font-ovo tracking-tight cursor-pointer">
+        {title}
+    </a>
+    
+    {iconName && (
+        <Icon class="md:w-3.5 md:h-3.5 w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+    )}
 </div>

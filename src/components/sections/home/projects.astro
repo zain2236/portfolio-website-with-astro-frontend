@@ -1,64 +1,58 @@
 ---
-import todoImage from "../../../assets/todo-image.png";
-import hotelImage from "../../../assets/hotel-img.jpg";
-import youtubeImage from "../../../assets/youtube-img.png";
-import aiImage from "../../../assets/ai-image.png";
 import ProjectCard from "../../ui/project-card.astro";
 import Button from "../../ui/button.astro";
 
-const projectsData = [
-  {
-    image: todoImage,
-    title: "TODO App",
-    description: "A simple todo list app built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/react-todo-app-with-jwt-auth",
-  },
-  {
-    image: hotelImage,
-    title: "Hotel Management System",
-    description: "A hotel management system built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/hotel-app",
-  },
-  {
-    image: youtubeImage,
-    title: "Youtube Clone",
-    description: "A youtube clone built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/react-youtube-clone-with-JWT-auth",
-  },
-  {
-    image: aiImage,
-    title: "AI Image Generator",
-    description: "A AI image generator built with React and Tailwind CSS.",
-    link: "https://github.com/zain2236/ai-image-generation-model-with-python-and-open-AI",
-  },
-];
+const { data } = Astro.props;
+const STRAPI_URL = "http://localhost:1337";
+
 ---
 
-<section class="container mx-auto py-12 ">
-  <div class="text-center">
-    <p class="text-md mb-1.5 tracking-wide font-medium font-ovo">
-      My Protfolio
-    </p>
-    <h2 class="text-4xl font-semibold font-ovo tracking-wide">My Projects</h2>
-    <p class="text-sm text-gray-700 font-medium tracking-wide font-ovo mt-4">
-      I have worked on a variety of projects, from small to large, from simple
-      to complex.
-    </p>
-  </div>
-  <div class="grid grid-cols-4 gap-x-8 py-12">
-    {
-      projectsData &&
-        projectsData.map((project) => (
-          <ProjectCard
-            title={project.title}
-            description={project.description}
-            image={project.image}
-            link={project.link}
-          />
-        ))
-    }
-  </div>
-  <div class= "grid place-items-center my-12">
-    <Button title="View All Projects" bgColor="bg-black" textColor="text-white" href="/projects" />
-  </div>
+<section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
+  {data ? (
+    <>
+      <div class="text-center">
+        <p class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo">
+          {data.subText}
+        </p>
+        <h2 class="md:text-4xl text-2xl font-semibold font-ovo tracking-wide">
+          {data.title}
+        </h2>
+        <p class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo">
+          {data.description}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-8 sm:gap-6 md:py-12 py-8">
+        {data?.projectCard && data.projectCard.map((project: any) => {
+          const imageUrl = project.projectPic?.url 
+            ? `${STRAPI_URL}${project.projectPic.url}` 
+            : null;
+          
+          // Handle link - could be a string or an object with href property
+          const projectLink = typeof project.link === 'string' 
+            ? project.link 
+            : project.link?.href || project.link?.url || "#";
+      
+          return (
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              link={projectLink}
+              image={imageUrl || ""}
+              imageAlt={project.title || "Project image"}
+              ctaTtile ={project.link?.title}
+              ctaHref={project.link?.href}
+            />
+          );
+        })}
+      </div>
+    </>
+  ) : (
+    <p>No content found</p>
+  )}
+  <div class= "grid place-items-center md:py-8 py-4">
+
+    <Button title={data?.projectCta?.title} bgColor={data?.projectCta?.ctaTheme} textColor={data?.projectCta?.textColor} iconName={data?.projectCta?.iconName} href={data?.projectCta.href} />
+    
+    </div>
 </section>

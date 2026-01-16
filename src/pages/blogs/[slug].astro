@@ -1,0 +1,108 @@
+---
+import { marked } from "marked";
+import Layout from "../../layouts/Layout.astro";
+
+// 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
+export async function getStaticPaths() {
+  const response = await fetch(
+    "http://localhost:1337/api/blog-links?populate[blogPic][fields][0]=url"
+  );
+  const { data } = await response.json();
+
+  return data.map((post: any) => ({
+    params: { slug: post.slug }, // URL banay ga: /blogs/how-to-improve-productivity
+    props: { post }, // Pura data niche props mein bhejay ga
+  }));
+}
+
+interface Props {
+  title: string;
+  slug: string;
+  category: string;
+  publishedAt?: string;
+  content?: string; // Markdown (Collection Type ke liye)
+  blogPic?: string;
+}
+
+// 2. Data ko receive karein
+const { post } = Astro.props;
+const STRAPI_URL = "http://localhost:1337";
+
+// Markdown ko HTML mein convert karein
+const contentHTML = await marked.parse(post.content);
+---
+
+<Layout title={post?.title}>
+  <div
+    id="progress-bar"
+    class="fixed top-0 left-0 h-1 bg-black z-110 transition-all duration-150 w-0"
+  >
+  </div>
+
+  <main class="bg-white min-h-screen pb-20">
+    <header
+      class="pt-16 md:pt-24 pb-12 container mx-auto px-5 sm:px-8 max-w-4xl"
+    >
+      <div class="flex items-center gap-3 mb-6">
+        <span
+          class="px-3 py-1 rounded-full bg-neutral-100 text-[10px] font-bold uppercase tracking-widest text-neutral-500"
+        >
+          {post?.category || "Article"}
+        </span>
+        <span class="text-neutral-300">•</span>
+        <time class="text-sm font-ovo text-neutral-500">
+          {
+            new Date(post?.publishedAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          }
+        </time>
+      </div>
+
+      <h1
+        class="text-4xl md:text-6xl font-medium font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance"
+      >
+        {post?.title}
+      </h1>
+    </header>
+
+    <div class="container mx-auto px-5 sm:px-8 max-w-5xl mb-16">
+      <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
+        <img
+          src={STRAPI_URL + post.blogPic.url}
+          alt={post?.title}
+          class="w-full h-[40vh] md:h-[60vh] object-cover"
+        />
+      </div>
+    </div>
+
+    <article class="container mx-auto px-5 sm:px-8 max-w-2xl">
+      {/* Markdown Content Yahan Display Hoga */}
+      <div
+        class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800 max-w-none"
+        set:html={contentHTML}
+      />
+
+      <div class="mt-16 pt-8 border-t border-neutral-100 flex flex-wrap gap-2">
+        <span class="text-sm font-medium text-neutral-400">Category:</span>
+        <span class="text-sm font-medium text-neutral-900">{post.category}</span
+        >
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  window.onscroll = function () {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById("progress-bar");
+    if (bar) bar.style.width = scrolled + "%";
+  };
+</script>
