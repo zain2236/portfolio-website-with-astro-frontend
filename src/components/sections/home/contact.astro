@@ -1,6 +1,7 @@
 ---
 import { Phone, Mail, MapPin , Linkedin ,  Instagram , Twitter , Facebook } from "@lucide/astro";
-import Button from "../../ui/button.astro";
+import { ContactForm } from "../../ui/contact-form.jsx";
+
 
 const { data } = Astro.props;
 
@@ -48,39 +49,12 @@ const socialIconMap = {
       
     </div>
 
+  
     <div class="col-span-2">
-      <form action="#">
-        <div class="grid grid-cols-2 gap-x-6">
-          <input
-            type="text"
-            placeholder="Name"
-            class="w-full bg-white border border-zinc-200 rounded-xl py-3 px-4 text-sm outline-none focus:border-zinc-900 transition-all"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            class="w-full bg-white border border-zinc-200 rounded-xl py-3 px-4 text-sm outline-none focus:border-zinc-900 transition-all"
-          />
-        </div>
-        <div class="my-8">
-          <textarea
-            name="text"
-            id="text"
-            rows="5"
-            placeholder="Leave a massege"
-            class="w-full bg-white border border-zinc-200 rounded-xl py-3 px-4 text-sm outline-none focus:border-zinc-900 transition-all"
-          ></textarea>
-        </div>
-        <div class="w-fit">
-          <Button
-            title={data?.contactCta.title}
-            bgColor={data?.contactCta.ctaTheme}
-            textColor={data?.contactCta.textColor}
-            iconName={data?.contactCta.iconName}
-            href={data?.contactCta.href}
-          />
-        </div>
-      </form>
+      <ContactForm  client:visible/>
     </div>
   </div>
 </section>
+
+
+  

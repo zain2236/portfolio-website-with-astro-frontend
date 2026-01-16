@@ -1,107 +1,106 @@
 ---
+import { marked } from "marked";
 import Layout from "../../layouts/Layout.astro";
 
-// 1. Fixed getStaticPaths Logic
-export function getStaticPaths() {
-  const blogs = [
-    {
-      title: "How to Learn Programming the Right Way",
-      slug: "how-to-learn-programming",
-      content: "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
-      createdAt: "15 Nov 2022",
-      category: "Education"
-    },
-    {
-      title: "How to Learn Programming the Right Way",
-      slug: "how-to-learn-programming",
-      content: "Programming is not about memorizing syntax. It is about learning how to think, break problems into smaller pieces, and solve them logically. Beginners who chase tools instead of fundamentals usually stall.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1160",
-      createdAt: "15 Nov 2022",
-      category: "Education"
-    },
-    // ... other blogs
-  ];
+// 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
+export async function getStaticPaths() {
+  const response = await fetch(
+    "http://localhost:1337/api/blog-links?populate[blogPic][fields][0]=url"
+  );
+  const { data } = await response.json();
 
-  return blogs.map((post) => ({
-    params: { slug: post.slug }, // This creates the URL
-    props: { post },            // This passes the data to the component
+  return data.map((post: any) => ({
+    params: { slug: post.slug }, // URL banay ga: /blogs/how-to-improve-productivity
+    props: { post }, // Pura data niche props mein bhejay ga
   }));
 }
 
-// 2. Access the data from Props (not Params)
+interface Props {
+  title: string;
+  slug: string;
+  category: string;
+  publishedAt?: string;
+  content?: string; // Markdown (Collection Type ke liye)
+  blogPic?: string;
+}
+
+// 2. Data ko receive karein
 const { post } = Astro.props;
+const STRAPI_URL = "http://localhost:1337";
+
+// Markdown ko HTML mein convert karein
+const contentHTML = await marked.parse(post.content);
 ---
 
-<Layout title={post.title}>
-  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-black z-[110] transition-all duration-150 w-0"></div>
+<Layout title={post?.title}>
+  <div
+    id="progress-bar"
+    class="fixed top-0 left-0 h-1 bg-black z-110 transition-all duration-150 w-0"
+  >
+  </div>
 
   <main class="bg-white min-h-screen pb-20">
-    <header class="pt-16 md:pt-24 pb-12 container mx-auto px-5 sm:px-8 max-w-4xl">
+    <header
+      class="pt-16 md:pt-24 pb-12 container mx-auto px-5 sm:px-8 max-w-4xl"
+    >
       <div class="flex items-center gap-3 mb-6">
-        <span class="px-3 py-1 rounded-full bg-neutral-100 text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-           {post.category || "Article"}
+        <span
+          class="px-3 py-1 rounded-full bg-neutral-100 text-[10px] font-bold uppercase tracking-widest text-neutral-500"
+        >
+          {post?.category || "Article"}
         </span>
         <span class="text-neutral-300">•</span>
-        <time class="text-sm font-ovo text-neutral-500">{post.createdAt}</time>
+        <time class="text-sm font-ovo text-neutral-500">
+          {
+            new Date(post?.publishedAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          }
+        </time>
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-medium font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance">
-        {post.title}
+      <h1
+        class="text-4xl md:text-6xl font-medium font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance"
+      >
+        {post?.title}
       </h1>
-      
-      <div class="mt-8 flex items-center gap-4 border-t border-neutral-100 pt-8">
-        <div class="w-10 h-10 rounded-full bg-neutral-200 overflow-hidden">
-          <img src="/avatar.jpg" alt="Author" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-sm font-bold font-outfit text-neutral-900">Your Name</p>
-          <p class="text-xs text-neutral-500 font-ovo">5 min read</p>
-        </div>
-      </div>
     </header>
 
     <div class="container mx-auto px-5 sm:px-8 max-w-5xl mb-16">
       <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          class="w-full h-[40vh] md:h-[60vh] object-cover hover:scale-105 transition-transform duration-700" 
+        <img
+          src={STRAPI_URL + post.blogPic.url}
+          alt={post?.title}
+          class="w-full h-[40vh] md:h-[60vh] object-cover"
         />
       </div>
     </div>
 
     <article class="container mx-auto px-5 sm:px-8 max-w-2xl">
-      <div class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800">
-        {/* NOTE: When you move to Strapi Markdown, 
-           you will render the HTML here using:
-           <div set:html={renderedMarkdown} /> 
-        */}
-        <p class="first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left">
-          {post.content}
-        </p>
-        
-        {/* Placeholder for long content */}
-        <p class="mt-6">
-          Setting up a solid foundation is the most critical step in any developer's journey. 
-          The modern web moves fast, but the principles of logic and problem solving remain constant.
-        </p>
-      </div>
+      {/* Markdown Content Yahan Display Hoga */}
+      <div
+        class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800 max-w-none"
+        set:html={contentHTML}
+      />
 
       <div class="mt-16 pt-8 border-t border-neutral-100 flex flex-wrap gap-2">
-        <span class="text-sm font-medium text-neutral-400">Tagged:</span>
-        <a href="#" class="text-sm font-medium text-neutral-900 hover:underline">#programming</a>
-        <a href="#" class="text-sm font-medium text-neutral-900 hover:underline">#mindset</a>
+        <span class="text-sm font-medium text-neutral-400">Category:</span>
+        <span class="text-sm font-medium text-neutral-900">{post.category}</span
+        >
       </div>
     </article>
   </main>
 </Layout>
 
 <script>
-  // Simple Scroll Progress Logic
-  window.onscroll = function() {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  window.onscroll = function () {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
     const bar = document.getElementById("progress-bar");
     if (bar) bar.style.width = scrolled + "%";

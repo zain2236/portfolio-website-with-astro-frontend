@@ -17,7 +17,7 @@ const Icon = iconMap[iconName as keyof typeof iconMap] ;
     border border-black/10 dark:border-white/20 
     rounded-full transition-all duration-300 ease-out
     hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:-translate-y-0.5
-    ${bgColor === 'black' ? 'bg-black text-white hover:bg-neutral-800' : 'bg-white/10 backdrop-blur-md text-current hover:bg-white/20'}
+    ${bgColor === 'black' ? 'hover:bg-black text-white bg-neutral-800' : 'bg-white/10 backdrop-blur-md text-current hover:bg-white/20'}
 `}>
     <a href={href} class="text-sm font-medium font-ovo tracking-tight cursor-pointer">
         {title}

@@ -47,7 +47,7 @@ const iconMap = {
         return (
           <div class="flex flex-col">
             <div class="flex items-center md:gap-2 gap-1.5 md:py-3 py-2">
-              <Icon class="md:w-7 md:h-7 w-6 h-6 md:my-5.5 my-4 border border-gray-400 hover:bg-black hover:text-white rounded-md p-1 transition-all duration-150 cursor-pointer" />
+              <Icon class="md:w-7 md:h-7 w-6 h-6 md:my-5.5 my-4 border border-gray-200 hover:bg-black hover:text-white rounded-md p-1 transition-all duration-150 cursor-pointer" />
               <h3 class="md:text-[1.4rem] text-[1.2rem] font-semibold font-ovo tracking-wide">
                 {group.heading}
               </h3>
@@ -66,7 +66,7 @@ const iconMap = {
                     // Agar toolIcons aik string hai (e.g. "GitBranch"), usay render karein
                     group.toolIcons.split(',').map((iconKey : any) => {
                       const ToolIcon = iconMap[iconKey.trim() as keyof typeof iconMap] || Terminal;
-                      return <ToolIcon class="md:w-7 md:h-7 w-6 h-6 border border-gray-400 hover:bg-black hover:text-white rounded-md p-1 transition-all duration-150 cursor-pointer" />;
+                      return <ToolIcon class="md:w-7 md:h-7 w-6 h-6 border border-gray-200 hover:bg-black hover:text-white rounded-md p-1 transition-all duration-150 cursor-pointer" />;
                     })
                   )}
                 </div>

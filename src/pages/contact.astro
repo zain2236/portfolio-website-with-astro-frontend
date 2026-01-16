@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ContactForm } from "../components/ui/contact-form.jsx";
+---
+
+<Layout>
+  <section
+    id="contact"
+    class="container mx-auto px-4 md:px-6 lg:px-8 py-20 lg:py-24"
+  >
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span
+        class="text-sm tracking-[0.2em] uppercase text-gray-500 mb-3 block font-outfit"
+      >
+        Get in touch
+      </span>
+      <h2
+        class="text-4xl md:text-5xl font-normal text-gray-900 font-ovo tracking-wide mb-6"
+      >
+        Let’s Work Together
+      </h2>
+      <p
+        class="text-base text-gray-600 font-outfit leading-relaxed max-w-lg mx-auto"
+      >
+        Have a project in mind, a question, or just want to say hello? Fill out
+        the form below and I’ll get back to you shortly.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div
+        class="p-8 md:p-10 rounded-2xl border border-gray-100 bg-[#fcfcfc] shadow-sm hover:shadow-lg transition-all duration-300"
+      >
+        <h3 class="text-2xl font-normal mb-8 text-gray-900 font-ovo">
+          Contact Information
+        </h3>
+
+        <p class="text-gray-600 mb-16 font-outfit leading-relaxed">
+          I'm currently available for freelance work, collaborations, and new
+          opportunities. Don't hesitate to reach out.
+        </p>
+
+        <ul class="space-y-8 text-gray-600 font-outfit">
+          <li class="flex items-center gap-5 group">
+            <div
+              class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+                  d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+              >
+            </div>
+            <div class="space-y-1">
+              <span class="block text-sm font-medium text-gray-900">Email</span>
+              <a
+                href="mailto:youremail@gmail.com"
+                class="block hover:text-gray-900 transition-colors"
+                >youremail@gmail.com</a
+              >
+            </div>
+          </li>
+
+          <li class="flex items-center gap-5 group">
+            <div
+              class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                ></path><circle cx="12" cy="10" r="3"></circle></svg
+              >
+            </div>
+            <div class="space-y-1">
+              <span class="block text-sm font-medium text-gray-900"
+                >Based in</span
+              >
+              <span class="block">Pakistan</span>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-5 group">
+            <div
+              class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                ></path><rect width="20" height="14" x="2" y="6" rx="2"
+                ></rect></svg
+              >
+            </div>
+            <div class="space-y-1">
+              <span class="block text-sm font-medium text-gray-900">Status</span
+              >
+              <span class="block">Open for freelance</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <ContactForm  client:visible/>
+    </div>
+  </section>
+</Layout>
+x

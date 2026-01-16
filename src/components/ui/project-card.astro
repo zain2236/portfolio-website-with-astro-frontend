@@ -17,8 +17,12 @@ const { title, description, image, link, ctaTtile, tech } =
             src={image}
             alt={title || "Project image"}
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            width={600}
-            height={450}
+            width={500}
+            height={400}
+            quality={60}
+            format="webp"
+            loading="lazy"
+            fetchpriority="low"
           />
         </div>
       ) : (

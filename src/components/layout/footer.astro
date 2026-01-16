@@ -8,10 +8,10 @@ const year = new Date().getFullYear();
 
 <footer class="bg-gray-200 border-t border-zinc-100 text-zinc-900">
   <div class="container mx-auto px-6 py-10 sm:py-14 lg:py-16">
-    
     <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-16">
-      
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-16"
+    >
       <!-- Brand & Description -->
       <div class="flex flex-col gap-6 sm:gap-8">
         <div>
@@ -19,23 +19,48 @@ const year = new Date().getFullYear();
             {data?.footerLogo ? data.footerLogo.title : "JAIN"}
             <span class="text-zinc-500">.</span>
           </h1>
-          <p class="mt-4 sm:mt-6 text-sm font-ovo leading-relaxed text-zinc-600 max-w-xs">
-            {data?.description || "Building digital experiences with focus on craft and minimalism."}
+          <p
+            class="mt-4 sm:mt-6 text-sm font-ovo leading-relaxed text-zinc-600 max-w-xs"
+          >
+            {
+              data?.description ||
+                "Building digital experiences with focus on craft and minimalism."
+            }
           </p>
         </div>
 
         <!-- Social Icons: Improved visibility -->
         <div class="flex gap-5">
-          <a href="#" aria-label="Facebook" class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300">
+          <a
+            href="https://web.facebook.com/profile.php?id=100054423643568"
+            target="_blank"
+            aria-label="Facebook"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
             <Facebook class="w-4 h-4" />
           </a>
-          <a href="#" aria-label="Instagram" class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            aria-label="Instagram"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
             <Instagram class="w-4 h-4" />
           </a>
-          <a href="#" aria-label="Twitter" class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300">
+          <a
+            href="https://x.com/zainbukhari7"
+            target="_blank"
+            aria-label="Twitter"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
             <Twitter class="w-4 h-4" />
           </a>
-          <a href="#" aria-label="LinkedIn" class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300">
+          <a
+            href="https://www.linkedin.com/in/zain-bukhari-7"
+            target="_blank"
+            aria-label="LinkedIn"
+            class="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+          >
             <Linkedin class="w-4 h-4" />
           </a>
         </div>
@@ -43,39 +68,55 @@ const year = new Date().getFullYear();
 
       <!-- Navigation Column -->
       <div>
-        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500">
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
           Navigation
         </h3>
         <ul class="space-y-4">
-          {data?.navigation?.map((nav: any) => (
-            <li>
-              <a href={nav.href} class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block">
-                {nav.title}
-              </a>
-            </li>
-          ))}
+          {
+            data?.navigation?.map((nav: any) => (
+              <li>
+                <a
+                  href={nav.href}
+                  class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block"
+                >
+                  {nav.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Services Column -->
       <div>
-        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500">
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
           Services
         </h3>
         <ul class="space-y-4">
-          {data?.services?.map((service: any) => (
-            <li>
-              <a href={service.href} class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block">
-                {service.title}
-              </a>
-            </li>
-          ))}
+          {
+            data?.services?.map((service: any) => (
+              <li>
+                <a
+                  href={service.href}
+                  class="text-sm font-ovo text-zinc-700 hover:text-zinc-900 transition-colors inline-block"
+                >
+                  {service.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Newsletter Column -->
       <div class="flex flex-col">
-        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500">
+        <h3
+          class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 sm:mb-8 text-zinc-500"
+        >
           Newsletter
         </h3>
         <p class="text-sm font-ovo text-zinc-600 leading-relaxed mb-6">
@@ -99,8 +140,9 @@ const year = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar: Refined Responsiveness -->
-    <div class="mt-16 sm:mt-20 pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-      
+    <div
+      class="mt-16 sm:mt-20 pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8"
+    >
       <!-- Copyright -->
       <div class="order-3 md:order-1 text-center md:text-left">
         <p class="text-[10px] font-ovo text-zinc-500 uppercase tracking-widest">
@@ -110,16 +152,26 @@ const year = new Date().getFullYear();
 
       <!-- Links -->
       <div class="flex gap-8 sm:gap-10 order-1 md:order-2">
-        <a href="#" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors">Privacy</a>
-        <a href="#" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors">Terms</a>
+        <a
+          href=""
+          class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors"
+          >Privacy</a
+        >
+        <a
+          href=""
+          class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors"
+          >Terms</a
+        >
       </div>
 
       <!-- Credit -->
-      <p class="text-[11px] font-ovo text-zinc-500 order-2 md:order-3 text-center md:text-right">
-        Handcrafted by 
-        <a 
-          href="https://www.linkedin.com/in/jain-kumar-b6253a200/" 
-          class="text-zinc-900 font-medium hover:underline decoration-zinc-300 underline-offset-8" 
+      <p
+        class="text-[11px] font-ovo text-zinc-500 order-2 md:order-3 text-center md:text-right"
+      >
+        Handcrafted by
+        <a
+          href="https://www.linkedin.com/in/jain-kumar-b6253a200/"
+          class="text-zinc-900 font-medium hover:underline decoration-zinc-300 underline-offset-8"
           target="_blank"
         >
           Jain Shah
