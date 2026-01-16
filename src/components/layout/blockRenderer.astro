@@ -1,0 +1,42 @@
+---
+import Hero from "../sections/home/hero.astro";
+import Intro from "../sections/home/intro.astro";
+import Skills from "../sections/home/skills.astro";
+import Services from "../sections/home/services.astro";
+import Projects from "../sections/home/projects.astro";
+import Contact from "../sections/home/contact.astro";
+import Blog from "../sections/home/blog.astro";
+
+const { block } = Astro.props;
+
+let Component = null;
+
+// 2. Check which component Strapi sent
+switch (block.__component) {
+  case 'sections.hero':
+    Component = Hero;
+    break;
+  case 'sections.intro':
+    Component = Intro;
+    break;
+  case 'sections.services':
+    Component = Services;
+    break;
+  case 'sections.skills':
+    Component = Skills;
+    break;
+  case 'sections.projects':
+    Component = Projects;
+    break;
+  case 'sections.blogs':
+    Component = Blog; // Note: You named the import 'Blog' (singular)
+    break;
+  case 'sections.contact':
+    Component = Contact;
+    break;
+  default:
+    break;
+}
+---
+
+{Component && <Component data={block} />}
