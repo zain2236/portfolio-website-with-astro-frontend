@@ -9,7 +9,7 @@ const { title, description, image, link, ctaTtile, tech } =
   class="group w-full h-full flex flex-col rounded-3xl border border-gray-200/60 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
 >
   <!-- Image -->
-  <div class="relative aspect-4/3 bg-gray-50 overflow-hidden shrink-0">
+  <div class="relative aspect-4/3  overflow-hidden shrink-0 bg-white">
     {
       image ? (
         <div class="w-full h-full flex items-center justify-center grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 overflow-hidden">
@@ -46,7 +46,7 @@ const { title, description, image, link, ctaTtile, tech } =
         {title}
       </h3>
 
-      <p class="text-sm text-gray-600 leading-relaxed mb-5 font-outfit">
+      <p class="text-sm line-clamp-3 text-gray-600 leading-relaxed mb-5 font-outfit">
         {description}
       </p>
 
