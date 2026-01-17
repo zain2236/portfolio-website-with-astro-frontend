@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Card from "../../ui/card.astro";
 
 const {data} = Astro.props;
-
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 ---
 <section class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
     {data && (
@@ -13,10 +13,10 @@ const {data} = Astro.props;
     </div>
     <div class="grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-0  md:gap-x-4 md:py-12 py-8">
         <div class="md:h-96 h-72 md:p-4 p-1">
-            <Image src={`http://localhost:1337${data.aboutPic.url}`} alt="A developer working on a minimalist workspace" class="w-full h-full object-contain" width={200} height={200} loading="lazy" fetchpriority="low" quality={60} format="webp">
+            <Image src={`${STRAPI_URL}${data.aboutPic.url}`} alt="A developer working on a minimalist workspace" class="w-full h-full object-contain" width={200} height={200} loading="lazy" fetchpriority="low" quality={60} format="webp">
         </div>
         <div class="md:p-2 p-1">
-            <p class="md:text-md text-sm text-gray-700 font-medium tracking-wide font-ovo">{data.description}</p>
+            <p class="md:text-lg text-sm text-gray-700 font-medium tracking-wide font-ovo">{data.description}</p>
             <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-6 sm:gap-4 gap-3 mt-10 ">
                 {data?.aboutCard && data.aboutCard?.map((card : any)=> {
                     return (

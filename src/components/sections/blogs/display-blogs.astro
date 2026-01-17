@@ -1,8 +1,9 @@
 ---
 import BlogCard from "../../ui/blog-card.astro";
 
-const BASE_URL = "http://localhost:1337/api/blog-links";
-const STRAPI_URL = "http://localhost:1337";
+const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
+const BASE_URL = `${API_URL}/api/blog-links`;
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 const PAGE_SIZE = 6;
 
 async function loadData(page: number = 1, pageSize: number = PAGE_SIZE) {

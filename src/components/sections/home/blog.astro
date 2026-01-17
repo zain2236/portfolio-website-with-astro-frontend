@@ -6,7 +6,7 @@ const { data } = Astro.props;
 ---
 
 <section class="container mx-auto md:py-12 py-8 px-4 md:px-6 lg:px-8">
-  <div class="text-center">
+  <div class="text-center max-w-2xl mx-auto">
     <p
       class="md:text-md text-xs md:mb-1.5 pb-1 tracking-wide font-medium font-ovo"
     >
@@ -16,7 +16,7 @@ const { data } = Astro.props;
       {data?.title}
     </h2>
     <p
-      class="hidden md:block md:text-sm text-xs md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo"
+      class="hidden md:block md:text-lg text-sm md:mt-4 mt-2 text-gray-700 font-medium tracking-wide font-ovo"
     >
       {data?.description}
     </p>

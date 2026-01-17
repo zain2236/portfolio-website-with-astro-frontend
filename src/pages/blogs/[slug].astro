@@ -5,8 +5,10 @@ import { Image } from "astro:assets";
 
 // 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
 export async function getStaticPaths() {
+  const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
+  const BLOG_LINKS_URL = `${API_URL}/api/blog-links?populate[blogPic][fields][0]=url`;
   const response = await fetch(
-    "http://localhost:1337/api/blog-links?populate[blogPic][fields][0]=url"
+    BLOG_LINKS_URL
   );
   const { data } = await response.json();
 
@@ -27,7 +29,7 @@ interface Props {
 
 // 2. Data ko receive karein
 const { post } = Astro.props;
-const STRAPI_URL = "http://localhost:1337";
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 
 // Markdown ko HTML mein convert karein
 const contentHTML = await marked.parse(post.content);
@@ -65,14 +67,14 @@ const contentHTML = await marked.parse(post.content);
     </header>
 
     <div class="container mx-auto px-4 md:px-6 lg:px-12 max-w-5xl mb-16">
-      <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
+      <div class="rounded-xl overflow-hidden shadow-2xl shadow-neutral-200">
        {post.blogPic ? (
         <Image
           src={STRAPI_URL + post?.blogPic?.url}
           alt={post?.title}
           class="w-full h-[40vh] md:h-[60vh] object-cover"
-          width={800}
-          height={400}
+          width={1000}
+          height={800}
           loading="eager"
           fetchpriority="high"
           quality={60}

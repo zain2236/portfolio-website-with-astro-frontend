@@ -21,7 +21,7 @@ const iconMap = {
 
 const Icon = iconMap[linkIcon as keyof typeof iconMap];
 
-const STRAPI_URL = "http://localhost:1337";
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : fallbackImage;
 
 let finalDescription = "";

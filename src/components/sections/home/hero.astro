@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Button from "../../ui/button.astro";
 
 const { data } = Astro.props;
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 ---
 
 <section class="container mx-auto md:py-18 py-12 px-4 md:px-6 lg:px-8">
@@ -13,7 +14,7 @@ const { data } = Astro.props;
       {
         data?.ProfilePicture?.url && (
           <Image
-            src={`http://localhost:1337${data?.ProfilePicture?.url}`}
+            src={`${STRAPI_URL}${data?.ProfilePicture?.url}`}
             alt="profile"
             class="w-full h-full object-cover"
             width={150}
@@ -37,7 +38,7 @@ const { data } = Astro.props;
       </h1>
 
       <p
-        class="md:text-sm text-xs text-gray-800 tracking-wide font-medium font-ovo md:mt-4 mt-2"
+        class="md:text-lg text-sm text-gray-800 tracking-wide font-medium font-ovo md:mt-4 mt-2"
       >
         {data?.description}
       </p>
