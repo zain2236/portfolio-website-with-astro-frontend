@@ -11,9 +11,15 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
+  // image: {
+  //   domains: ['localhost' , 'angeline-fanatical-kaylene.ngrok-free.dev'],
+  // },
   image: {
-    domains: ['localhost'],
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: '**.ngrok-free.dev', // Ye sab tarah ke ngrok links allow karega
+    }],
   },
-
+  
   integrations: [react()]
 });
