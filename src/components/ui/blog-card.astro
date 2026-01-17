@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { ArrowRightIcon } from "@lucide/astro";
 import { marked } from "marked";
+import fallbackImage from "../../assets/404-fallback.png";
 
 const {
   title,
@@ -21,7 +22,7 @@ const iconMap = {
 const Icon = iconMap[linkIcon as keyof typeof iconMap];
 
 const STRAPI_URL = "http://localhost:1337";
-const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "/404-fallback.png";
+const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : fallbackImage;
 
 let finalDescription = "";
 
@@ -45,7 +46,7 @@ if (description) {
 >
   <a href={`/blogs`} class="block overflow-hidden">
     <Image
-      src={image}
+      src={image as string}
       alt={title}
       class="h-56 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       width={300}
@@ -86,7 +87,7 @@ if (description) {
     >
       {finalDescription}
     </p>
- 
+
     {
       linkHref && linkText && (
         <a
