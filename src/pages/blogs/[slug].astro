@@ -1,6 +1,7 @@
 ---
 import { marked } from "marked";
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 
 // 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
 export async function getStaticPaths() {
@@ -70,18 +71,24 @@ const contentHTML = await marked.parse(post.content);
 
     <div class="container mx-auto px-5 sm:px-8 max-w-5xl mb-16">
       <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
-        <img
+        <Image
           src={STRAPI_URL + post.blogPic.url}
           alt={post?.title}
           class="w-full h-[40vh] md:h-[60vh] object-cover"
+          width={800}
+          height={400}
+          loading="eager"
+          fetchpriority="high"
+          quality={60}
+          format="webp"
         />
       </div>
     </div>
 
-    <article class="container mx-auto px-5 sm:px-8 max-w-2xl">
+    <article class="container mx-auto px-5 sm:px-8 max-w-4xl">
       {/* Markdown Content Yahan Display Hoga */}
       <div
-        class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800 max-w-none"
+        class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800 max-w-none prose-headings:text-left prose-p:text-left prose-ul:text-left prose-ol:text-left prose-li:text-left"
         set:html={contentHTML}
       />
 
