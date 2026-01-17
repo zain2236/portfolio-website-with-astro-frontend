@@ -34,15 +34,10 @@ const contentHTML = await marked.parse(post.content);
 ---
 
 <Layout title={post?.title}>
-  <div
-    id="progress-bar"
-    class="fixed top-0 left-0 h-1 bg-black z-110 transition-all duration-150 w-0"
-  >
-  </div>
 
-  <main class="bg-white min-h-screen pb-20">
+  <main class=" min-h-screen pb-20">
     <header
-      class="pt-16 md:pt-24 pb-12 container mx-auto px-5 sm:px-8 max-w-4xl"
+      class="pt-16 md:pt-24 pb-12 container mx-auto px-4 md:px-6 lg:px-12 max-w-5xl"
     >
       <div class="flex items-center gap-3 mb-6">
         <span
@@ -63,16 +58,17 @@ const contentHTML = await marked.parse(post.content);
       </div>
 
       <h1
-        class="text-4xl md:text-6xl font-medium font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance"
+        class="text-4xl md:text-6xl font-semibold font-ovo leading-[1.1] text-neutral-950 tracking-tight text-balance"
       >
         {post?.title}
       </h1>
     </header>
 
-    <div class="container mx-auto px-5 sm:px-8 max-w-5xl mb-16">
+    <div class="container mx-auto px-4 md:px-6 lg:px-12 max-w-5xl mb-16">
       <div class="rounded-3xl overflow-hidden shadow-2xl shadow-neutral-200">
+       {post.blogPic ? (
         <Image
-          src={STRAPI_URL + post.blogPic.url}
+          src={STRAPI_URL + post?.blogPic?.url}
           alt={post?.title}
           class="w-full h-[40vh] md:h-[60vh] object-cover"
           width={800}
@@ -82,13 +78,26 @@ const contentHTML = await marked.parse(post.content);
           quality={60}
           format="webp"
         />
+       ) : (
+        <Image
+          src="/404-fallback.png"
+          alt="Fallback Image"
+          class="w-full h-[40vh] md:h-[67vh] object-cover"
+          width={800}
+          height={400}
+          loading="eager"
+          fetchpriority="high"
+          quality={60}
+          format="webp"
+        />
+       )}
       </div>
     </div>
 
-    <article class="container mx-auto px-5 sm:px-8 max-w-4xl">
+    <article class="container mx-auto px-4 md:px-6 lg:px-12 max-w-5xl">
       {/* Markdown Content Yahan Display Hoga */}
       <div
-        class="prose prose-neutral prose-lg lg:prose-xl font-ovo leading-relaxed text-neutral-800 max-w-none prose-headings:text-left prose-p:text-left prose-ul:text-left prose-ol:text-left prose-li:text-left"
+        class="prose prose-neutral prose-lg lg:prose-xl font-ovo  rounded-md leading-relaxed text-neutral-800 max-w-none prose-headings:text-left prose-p:text-gray-600 prose-p:text-base prose-ul:text-left prose-ol:text-left prose-li:text-left"
         set:html={contentHTML}
       />
 
@@ -101,15 +110,4 @@ const contentHTML = await marked.parse(post.content);
   </main>
 </Layout>
 
-<script>
-  window.onscroll = function () {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    const bar = document.getElementById("progress-bar");
-    if (bar) bar.style.width = scrolled + "%";
-  };
-</script>
+

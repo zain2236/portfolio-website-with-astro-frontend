@@ -49,18 +49,20 @@ const blogs = await loadData();
   <div class="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
     {
       blogs && blogs.length > 0 ? (
-        blogs.map((blog: any) => (
-          <BlogCard
-            title={blog.title}
-            slug={blog.slug}
-            content={blog.content}
-            imageUrl={blog.blogPic.url}
-            publishedAt={blog.publishedAt}
-            linkHref={`/blogs/${blog.slug}`}
-            linkText="Read Article"
-            linkIcon="ArrowRightIcon"
-          />
-        ))
+        blogs.map((blog: any) => {
+          return (
+            <BlogCard
+              title={blog.title}
+              slug={blog.slug}
+              content={blog.content}
+              imageUrl={blog?.blogPic?.url}
+              publishedAt={blog?.createdAt}
+              linkHref={`/blogs/${blog.slug}`}
+              linkText="Read Article"
+              linkIcon="ArrowRightIcon"
+            />
+          );
+        })
       ) : (
         <div class="col-span-full py-20 text-center border-2 border-dashed border-neutral-100 rounded-3xl">
           <p class="text-neutral-400 font-ovo">

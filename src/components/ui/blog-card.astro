@@ -21,7 +21,7 @@ const iconMap = {
 const Icon = iconMap[linkIcon as keyof typeof iconMap];
 
 const STRAPI_URL = "http://localhost:1337";
-const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "";
+const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : "/404-fallback.png";
 
 let finalDescription = "";
 
