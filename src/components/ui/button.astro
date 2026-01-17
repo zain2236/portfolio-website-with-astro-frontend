@@ -1,6 +1,6 @@
 ---
 import { ArrowRight, Download } from "@lucide/astro";
-const { title, bgColor, iconName, href } = Astro.props;
+const { title, bgColor, iconName, href , download} = Astro.props;
 
 const iconMap = {
   Download: Download,
@@ -22,6 +22,7 @@ const Icon = iconMap[iconName as keyof typeof iconMap];
 >
   <a
     href={href}
+    download={download}
     class="text-sm font-medium font-ovo tracking-tight cursor-pointer"
   >
     {title}
