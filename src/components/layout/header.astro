@@ -74,10 +74,10 @@ const { data } = Astro.props;
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (!entry.isIntersecting) {
-        header?.classList.add("bg-white/90", "backdrop-blur-sm", "shadow-sm");
+        header?.classList.add("bg-white/95", "shadow-sm");
         navList?.classList.remove("bg-white", "shadow-sm");
       } else {
-        header?.classList.remove("bg-white/90", "backdrop-blur-sm", "shadow-sm");
+        header?.classList.remove("bg-white/95", "shadow-sm");
         navList?.classList.add("bg-white", "shadow-sm");
       }
     },
