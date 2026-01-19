@@ -42,7 +42,7 @@ export default function Sidebar() {
         onClick={toggleMenu}
         className={`fixed inset-0 bg-gray-500/40 z-[998] transition-all duration-300 ease-in-out md:hidden ${
           isOpen 
-            ? "opacity-100 visible backdrop-blur-sm pointer-events-auto" 
+            ? "opacity-100 visible pointer-events-auto" 
             : "opacity-0 invisible pointer-events-none"
         }`}
       ></div>
