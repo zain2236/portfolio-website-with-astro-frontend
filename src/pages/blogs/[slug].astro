@@ -2,10 +2,12 @@
 import { marked } from "marked";
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { getStrapiImageUrl } from "../../utils/strapi";
 
 // 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
 export async function getStaticPaths() {
-  const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
+  const { getStrapiUrl } = await import("../../utils/strapi");
+  const API_URL = getStrapiUrl();
   
   // Validate API_URL exists and is valid
   if (!API_URL || typeof API_URL !== 'string') {
@@ -49,7 +51,6 @@ export async function getStaticPaths() {
 
 // 2. Data ko receive karein
 const { post } = Astro.props;
-const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 
 // Markdown ko HTML mein convert karein
 const contentHTML = await marked.parse(post.content);
@@ -90,7 +91,7 @@ const contentHTML = await marked.parse(post.content);
       <div class="rounded-xl overflow-hidden shadow-2xl shadow-neutral-200">
        {post.blogPic ? (
         <Image
-          src={STRAPI_URL + post?.blogPic?.url}
+          src={getStrapiImageUrl(post?.blogPic?.url) || ""}
           alt={post?.title}
           class="w-full h-[40vh] md:h-[60vh] object-cover"
           width={1000}

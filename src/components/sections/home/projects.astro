@@ -1,9 +1,9 @@
 ---
 import ProjectCard from "../../ui/project-card.astro";
 import Button from "../../ui/button.astro";
+import { getStrapiImageUrl } from "../../../utils/strapi";
 
 const { data } = Astro.props;
-const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 
 ---
 
@@ -24,9 +24,7 @@ const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
 
       <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 md:gap-8 sm:gap-6 md:py-12 py-8">
         {data?.projectCard && data.projectCard.map((project: any) => {
-          const imageUrl = project.projectPic?.url 
-            ? `${STRAPI_URL}${project.projectPic.url}` 
-            : null;
+          const imageUrl = getStrapiImageUrl(project.projectPic?.url);
           
           // Handle link - could be a string or an object with href property
           const projectLink = typeof project.link === 'string' 
