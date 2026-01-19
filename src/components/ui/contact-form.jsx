@@ -9,12 +9,13 @@ export function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
   async function handleSubmit(e) {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:1337/api/contact-infos", {
+      const response = await fetch(`${API_URL}/api/contact-infos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: formData }),
