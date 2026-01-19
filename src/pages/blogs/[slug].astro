@@ -6,25 +6,45 @@ import { Image } from "astro:assets";
 // 1. getStaticPaths: Ye build ke waqt batata hai ke kaunse URLs banane hain
 export async function getStaticPaths() {
   const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
-  const BLOG_LINKS_URL = `${API_URL}/api/blog-links?populate[blogPic][fields][0]=url`;
-  const response = await fetch(
-    BLOG_LINKS_URL
-  );
-  const { data } = await response.json();
+  
+  // Validate API_URL exists and is valid
+  if (!API_URL || typeof API_URL !== 'string') {
+    console.warn('PUBLIC_STRAPI_URL is not set. Returning empty paths.');
+    return [];
+  }
 
-  return data.map((post: any) => ({
-    params: { slug: post.slug }, // URL banay ga: /blogs/how-to-improve-productivity
-    props: { post }, // Pura data niche props mein bhejay ga
-  }));
-}
+  try {
+    // Validate URL format
+    new URL(API_URL);
+  } catch (error) {
+    console.warn('PUBLIC_STRAPI_URL is not a valid URL. Returning empty paths.');
+    return [];
+  }
 
-interface Props {
-  title: string;
-  slug: string;
-  category: string;
-  publishedAt?: string;
-  content?: string; // Markdown (Collection Type ke liye)
-  blogPic?: string;
+  try {
+    const BLOG_LINKS_URL = `${API_URL}/api/blog-links?populate[blogPic][fields][0]=url`;
+    const response = await fetch(BLOG_LINKS_URL);
+    
+    if (!response.ok) {
+      console.warn(`Failed to fetch blog links: ${response.status} ${response.statusText}`);
+      return [];
+    }
+    
+    const { data } = await response.json();
+
+    if (!data || !Array.isArray(data)) {
+      console.warn('Invalid response format from API');
+      return [];
+    }
+
+    return data.map((post) => ({
+      params: { slug: post.slug }, // URL banay ga: /blogs/how-to-improve-productivity
+      props: { post }, // Pura data niche props mein bhejay ga
+    }));
+  } catch (error) {
+    console.error('Error fetching blog links:', error);
+    return [];
+  }
 }
 
 // 2. Data ko receive karein
