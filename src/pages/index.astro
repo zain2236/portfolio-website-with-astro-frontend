@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlockRenderer from "../components/layout/blockRenderer.astro";
-const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
+import { getStrapiUrl } from "../utils/strapi";
+
+const API_URL = getStrapiUrl();
 
 const URL =
   `${API_URL}/api/home-page?populate[blocks][on][sections.hero][populate][ProfilePicture][fields][0]=url&populate[blocks][on][sections.hero][populate][heroCta][populate]=*&populate[blocks][on][sections.intro][populate][aboutPic][fields][0]=url&populate[blocks][on][sections.intro][populate][aboutCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.services][populate][serviceCard][populate][serviceLink][populate]=*&populate[blocks][on][sections.skills][populate][skillComponent][populate][skillBar][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][link][populate]=*&populate[blocks][on][sections.projects][populate][projectCard][populate][projectPic][fields][0]=url&populate[blocks][on][sections.projects][populate][projectCta][populate]=*&populate[blocks][on][sections.blogs][populate][blogCard][populate][blogPic][fields][0]=url&populate[blocks][on][sections.blogs][populate][blogCta][populate]=*&populate[blocks][on][sections.contact][populate][socialContact][populate]=*`;

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { ArrowRightIcon } from "@lucide/astro";
 import { marked } from "marked";
 import fallbackImage from "../../assets/404-fallback.png";
+import { getStrapiImageUrl } from "../../utils/strapi";
 
 const {
   title,
@@ -21,8 +22,7 @@ const iconMap = {
 
 const Icon = iconMap[linkIcon as keyof typeof iconMap];
 
-const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL;
-const image = imageUrl ? `${STRAPI_URL}${imageUrl}` : fallbackImage;
+const image = getStrapiImageUrl(imageUrl) || fallbackImage;
 
 let finalDescription = "";
 

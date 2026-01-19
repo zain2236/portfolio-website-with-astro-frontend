@@ -9,7 +9,21 @@ export function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const API_URL = import.meta.env.PUBLIC_STRAPI_URL;
+  // For client-side code, ensure HTTPS for non-localhost URLs
+  const getApiUrl = () => {
+    const url = import.meta.env.PUBLIC_STRAPI_URL?.replace(/\/$/, '') || '';
+    if (!url) return '';
+    // If it's localhost, return as is
+    if (url.includes('localhost') || url.includes('127.0.0.1')) {
+      return url;
+    }
+    // For production, ensure HTTPS
+    if (url.startsWith('http://')) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
+  };
+  const API_URL = getApiUrl();
   async function handleSubmit(e) {
     e.preventDefault();
     setIsSubmitting(true);
